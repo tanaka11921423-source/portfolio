@@ -36,6 +36,16 @@
     font-size: 15px;
     line-height: 1.85;
   }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
 
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
 
@@ -174,7 +184,7 @@
   @media (max-width: 600px) { .strength-grid { grid-template-columns: 1fr; } }
   .strength-cell { background: var(--bg2); padding: 1.8rem; }
   .strength-num {
-    font-family: var(--display); font-size: 2rem; font-weight: 800;
+    font-size: 1.5rem; font-weight: 700;
     color: var(--border); line-height: 1; margin-bottom: 0.7rem;
   }
   .strength-title { font-size: 0.88rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
@@ -249,7 +259,7 @@
   }
   .banner-card:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(26,107,60,0.08); }
   .banner-thumb {
-    aspect-ratio: 1; background: var(--bg3);
+    aspect-ratio: 5/4; background: var(--bg3);
     display: flex; align-items: center; justify-content: center;
     font-size: 0.65rem; color: var(--text-muted);
   }
@@ -363,26 +373,28 @@
 <div id="top">
   <div class="wrap">
     <section class="hero" aria-labelledby="hero-name">
-      <p class="hero-badge">Portfolio 2026 — WEB Designer → Director</p>
-      <h1 class="hero-name" id="hero-name">TANAKA<br>JUNDAI</h1>
-      <p class="hero-name-ja">田中 純大</p>
+      <p class="hero-badge">Portfolio 2026 — WEB Designer / Director志望</p>
+      <h1 class="hero-name" id="hero-name">田中 純大</h1>
+      <p class="hero-name-ja">Tanaka Jundai｜1999年生まれ、福島県出身</p>
       <p class="hero-desc">
-        Photoshop を約4年、After Effects・Premiere Pro での映像制作を経験してきました。<br>
-        デザインの見た目だけでなく、<strong>「誰に・何を・どう伝えるか」を考えながら作る</strong>スタンスを大切にしています。
+        幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点です。<br>
+        製造業での品質管理を経てクリエイティブ分野へ転身。2022年にフリーランスとして独立後、
+        現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
       </p>
 
       <!-- キャリアビジョン -->
       <div class="hero-vision" role="note" aria-label="キャリアビジョン">
         <p class="hero-vision-label">Career Vision</p>
         <p class="hero-vision-text">
-          現場の温度感を感じながら、<strong>データをもとに改善を重ねられる仕事</strong>に携わりたいと考えています。
-          これまでの制作経験を起点に、クライアントと制作チームの橋渡しができる
-          WEBディレクターを目指しています。
+          デザイナーとして制作経験を積みながら、将来的には
+          <strong>クリエイティブとビジネス目標を繋げられるWEBディレクター</strong>へのステップアップを目指しています。
+          データに基づく改善提案や制作フローの効率化など、制作の枠を超えた貢献を続けていきたいと考えています。
         </p>
       </div>
 
       <div class="hero-chips" role="list" aria-label="スキルタグ">
-        <span class="chip hi" role="listitem">WEB Director 志望</span>
+        <span class="chip hi" role="listitem">WEB Designer</span>
+        <span class="chip hi" role="listitem">Director志望</span>
         <span class="chip hi" role="listitem">Visual Design</span>
         <span class="chip hi" role="listitem">Motion Graphics</span>
         <span class="chip" role="listitem">Photoshop 約4年</span>
@@ -404,26 +416,18 @@
     <div class="about-grid">
       <div class="about-body">
         <p>
-          現職では求人広告のバナーを継続的に担当してきました。
-          繁忙期には<strong>1日に6枚</strong>制作することもあり、数えきれないほどの案件に対応してきた経験があります。
-          ターゲットとなる求職者がInstagramで目にすることを前提に、
-          <strong>「どの情報を最初に見せるか」「どう配置すれば読み進められるか」</strong>
-          を考えながら制作するスタンスが身につきました。
+          幼少期から好奇心の赴くまま理想の世界を形にすることに没頭してきた経験が、
+          <strong>ターゲットに刺さる世界観を構築するデザインの礎</strong>になっています。
         </p>
         <p>
-          独学で取り組んだ After Effects を使った映像制作では、
-          クライアントとの認識のズレを防ぐために着手前にコンセプトアートを作成し、
-          <strong>イメージを先に共有してから制作を開始する進め方</strong>を実践してきました。
-          お互いの時間と制作コストを抑えることへの意識は、ディレクター業務に通じると考えています。
+          2022年より業務委託での制作活動をスタートし、現在は広告代理店にて<strong>月100本を超えるバナー制作</strong>を担当。
+          データに基づく改善提案や制作フローの効率化を自発的に行い、
+          チーム全体のパフォーマンス向上にも寄与してきました。
         </p>
         <p>
-          映像制作は MV 2本・配信演出映像 1本の合計3件を担当。
-          クライアントが選定したロケ地でスマホ撮影し、構図を意識しながら素材を収録。
-          編集・カラーグレーディングまで<strong>企画から納品まで一通り関わった経験</strong>が、自分の強みのひとつです。
-        </p>
-        <p>
-          独学・本業と並行というスタートですが、継続的に制作を続けながらスキルを積んできました。
-          成長意欲と、相手の意図を汲み取ろうとする姿勢を武器に転職活動に臨んでいます。
+          視覚的な強弱を活かしたタイポグラフィと情報の簡略化を強みとし、
+          <strong>限られたスペースで視認性と訴求力を両立させたレイアウト</strong>を
+          迅速に構成することが得意です。
         </p>
       </div>
 
@@ -473,16 +477,16 @@
       </thead>
       <tbody>
         <tr>
-          <td>バナー制作</td>
-          <td>ナイトワーク求人媒体「体入ショコラ」向けサンプルバナーを自主制作・提供。繁忙期は1日6枚対応／Photoshop 約4年</td>
+          <td>現職（広告代理店）</td>
+          <td>飲食ポータルサイトの広告バナー制作・月100本超／データ改善提案・制作フロー効率化</td>
         </tr>
         <tr>
-          <td>映像編集</td>
+          <td>フリーランス（2022〜）</td>
+          <td>求人媒体「体入ショコラ」向けサンプルバナーを自主制作・提供／Photoshop 約4年</td>
+        </tr>
+        <tr>
+          <td>映像制作</td>
           <td>MV 2本・配信演出映像 1本、合計3件／After Effects・Premiere Pro 約1年</td>
-        </tr>
-        <tr>
-          <td>撮影</td>
-          <td>スタジオでのスマホ撮影・構図の検討／自主制作MV</td>
         </tr>
         <tr>
           <td>クライアント対応</td>
@@ -506,40 +510,37 @@
 
       <div class="strength-cell" role="listitem">
         <div class="strength-num" aria-hidden="true">01</div>
-        <h3 class="strength-title">現場の温度感を感じながら改善したい</h3>
+        <h3 class="strength-title">作って終わりにしない</h3>
         <p class="strength-body">
-          制作を続ける中で、作って終わりではなく
-          <strong>「どう届いたか」をデータで確認しながら改善を重ねる仕事</strong>に関心が高まりました。
-          クリエイティブの制作経験を起点に、より意味のある発信に貢献できる場所を求めています。
+          データを確認しながら改善を重ねることに関心があります。
+          現職でも改善提案や制作フローの効率化を自発的に行ってきました。
         </p>
       </div>
 
       <div class="strength-cell" role="listitem">
         <div class="strength-num" aria-hidden="true">02</div>
-        <h3 class="strength-title">制約があるときほど、先に考える</h3>
+        <h3 class="strength-title">ないものは代替手段を考える</h3>
         <p class="strength-body">
-          「店内写真が用意できない」という状況で、ターゲットに馴染みやすいイラスト訴求に切り替えるなど、
-          ないものを嘆くより<strong>「何で代替できるか」を先に考える</strong>スタンスが身についています。
+          素材や予算の制約があるとき、嘆くより「何で補えるか」を先に考えます。
+          制約をデザインの工夫で乗り越える経験を積んできました。
         </p>
       </div>
 
       <div class="strength-cell" role="listitem">
         <div class="strength-num" aria-hidden="true">03</div>
-        <h3 class="strength-title">始める前に認識を合わせる</h3>
+        <h3 class="strength-title">作る前にすり合わせる</h3>
         <p class="strength-body">
-          映像制作では着手前にコンセプトアートを作り、クライアントとイメージを確認してから制作を開始。
-          <strong>お互いの制作コストを抑える進め方</strong>を意識して実践してきました。
-          このプロセスは、ディレクターとして大事にしたい姿勢のひとつです。
+          着手前にコンセプトアートでイメージを共有し、方向性を確認してから制作を始めます。
+          手戻りを減らし、お互いのコストを抑えることを意識しています。
         </p>
       </div>
 
       <div class="strength-cell" role="listitem">
         <div class="strength-num" aria-hidden="true">04</div>
-        <h3 class="strength-title">デザインの意図を言葉で説明できる</h3>
+        <h3 class="strength-title">デザインの根拠を言葉にする</h3>
         <p class="strength-body">
-          「なぜこの配色か」「なぜこの情報を先に見せるのか」を説明できるよう意識して制作してきました。
-          <strong>感覚ではなく意図を持ってデザインを判断できること</strong>が、
-          チームやクライアントとの調整に活きると考えています。
+          「なぜこの配色・配置か」を説明できるよう意識して制作しています。
+          感覚だけでなく、意図を持って判断することを大切にしています。
         </p>
       </div>
 
@@ -568,7 +569,7 @@
         </div>
         <div class="work-inner" style="grid-template-columns:1fr">
           <div class="work-body">
-            <p class="work-cat">依頼案件 — 実写×イラスト合成MV</p>
+            <p class="work-cat">依頼案件 — 実写×イラスト合成MV｜<span style="font-weight:300">2022年12月</span></p>
             <h3 class="work-title">「LOVE ANTHEM」Music Video</h3>
 
             <div class="work-scope" aria-label="担当範囲">
@@ -614,8 +615,8 @@
         </div>
         <div class="work-inner" style="grid-template-columns:1fr">
           <div class="work-body">
-            <p class="work-cat">自主制作 — コンセプトから一人で完結</p>
-            <h3 class="work-title">「部屋に照らされた光」</h3>
+            <p class="work-cat">自主制作 — コンセプトから一人で完結｜<span style="font-weight:300">2022年12月</span></p>
+            <h3 class="work-title">「部屋に照らされた光」/ 可不</h3>
 
             <div class="work-scope" aria-label="担当範囲">
               <span class="work-scope-label">担当範囲（音源以外すべて）</span>
@@ -659,7 +660,7 @@
         </div>
         <div class="work-inner" style="grid-template-columns:1fr">
           <div class="work-body">
-            <p class="work-cat">依頼案件（独学） — After Effects 配信演出</p>
+            <p class="work-cat">依頼案件（独学） — After Effects 配信演出｜<span style="font-weight:300">2026年4月</span></p>
             <h3 class="work-title">配信スタート演出映像</h3>
 
             <div class="work-scope" aria-label="担当範囲">
@@ -696,7 +697,7 @@
 <section id="banner" class="sec" aria-labelledby="banner-title">
   <div class="wrap">
     <p class="sec-label">04 — Works / Banner</p>
-    <h2 class="sec-title" id="banner-title">求人バナー サンプル制作<br><small style="font-size:0.5em;font-weight:300;color:var(--text-muted)">体入ショコラ向け 自主制作・自主提供 / 10パターン</small></h2>
+    <h2 class="sec-title" id="banner-title">求人バナー サンプル制作<br><small style="font-size:0.5em;font-weight:300;color:var(--text-muted)">体入ショコラ向け 自主制作・自主提供 / 10パターン｜2026年5月制作</small></h2>
 
     <!-- 制作プロセスの可視化 -->
     <div class="process-box" aria-label="制作プロセス">
@@ -723,43 +724,43 @@
 
     <div class="banner-grid" role="list" aria-label="バナー制作一覧">
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像1_田中.jpg" alt="バナー1" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner1.jpg" alt="バナー1" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>モノクロ × ゴールド</strong>AI生成女性で高級感を演出。「一流ホテルクラス」という言葉と格調を合わせる</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像2_田中.jpg" alt="バナー2" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner2.jpg" alt="バナー2" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>イラスト × 暗色</strong>モダンなイラストで親近感を演出。高単価を落ち着いたトーンで伝える</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像3_田中.jpg" alt="バナー3" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner3.jpg" alt="バナー3" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>実写 × 夏カラー</strong>夏らしい明るい配色と実写で、季節感とリアリティを両立</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像4_田中.jpg" alt="バナー4" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner4.jpg" alt="バナー4" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>アニメ調 × マゼンタ</strong>ターゲットが見慣れているイラスト表現で親しみやすさを重視</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像5_田中.jpg" alt="バナー5" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner5.jpg" alt="バナー5" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>夏祭り × イラスト</strong>浴衣モチーフで季節感を演出。短期・単発応募への促進を狙う</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像6_田中.jpg" alt="バナー6" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner6.jpg" alt="バナー6" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>AI背景 × 高級感</strong>店内写真なしでも、AI生成の内装で格調のある空間を表現</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像7_田中.jpg" alt="バナー7" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner7.jpg" alt="バナー7" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>水色 × 黄色（補色設計）</strong>補色に近い配色でコントラストを最大化し、タイムライン上で目が止まりやすい構造を意識</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像8_田中.jpg" alt="バナー8" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner8.jpg" alt="バナー8" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>AI実写風 × ホテル感</strong>笑顔の女性で安心感を演出。「豪華な内装」を先出しして期待感を高める</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像9_田中.jpg" alt="バナー9" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner9.jpg" alt="バナー9" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>大理石 × コスメ小物 × コラージュ</strong>店内写真・AI女性・コスメ小物を組み合わせ、高級感と女性らしさを両立。情報量の多さをレイアウトで整理</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="インスタ画像10_田中.jpg" alt="バナー10" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;">
+        <img src="banner10.jpg" alt="バナー10" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>アニメ × 街並み × SNSハッシュタグ</strong>「#未経験者さん積極採用中」でSNSネイティブ層への親和性を意識。明るい街並み背景で開放感を演出</div>
       </div>
     </div>
@@ -799,8 +800,9 @@
       </p>
     </div>
 
-    <div class="vision-grid" role="list" aria-label="大切にしていること">
+    <div class="vision-grid" role="list" aria-label="大切にしていること" style="grid-template-columns:repeat(3,1fr)">
       <div class="vision-cell" role="listitem">
+        
         <p class="vision-cell-label">制作において大切にしていること</p>
         <p class="vision-cell-text">
           「なぜこのデザインか」を言葉で説明できることを意識しています。
@@ -809,18 +811,20 @@
         </p>
       </div>
       <div class="vision-cell" role="listitem">
+        
         <p class="vision-cell-label">ディレクターとして目指したいこと</p>
         <p class="vision-cell-text">
           データと制作の両方を理解した上で、<strong>クリエイティブとビジネス目標を繋げられるディレクター</strong>になることが目標です。
           現場の温度感を感じながら、改善を重ねられる仕事に携わり続けたいと思っています。
         </p>
       </div>
-      <div class="vision-cell" role="listitem" style="grid-column:1/-1">
+      <div class="vision-cell" role="listitem">
+        
         <p class="vision-cell-label">デザイナーとして持ち続けたい視点</p>
         <p class="vision-cell-text">
-          「このデザインが仕事の成果にどう直結するか」を、具体的な言葉で説明できるデザイナーを目指しています。
-          感覚的に良いものを作るだけでなく、<strong>なぜそのデザインがビジネスに効くのかをロジックで示せること</strong>が、
-          クライアントやチームから信頼されるクリエイターの条件だと考えています。
+          「このデザインが仕事の成果にどう直結するか」を具体的な言葉で説明できるデザイナーを目指しています。
+          <strong>なぜそのデザインがビジネスに効くのかをロジックで示せること</strong>が、
+          信頼されるクリエイターの条件だと考えています。
         </p>
       </div>
     </div>
@@ -829,12 +833,7 @@
 
 
 
-<footer role="contentinfo">
-  <div class="footer-inner">
-    <span>© 2026 田中 純大</span>
-    <span>WEB Designer → Director</span>
-  </div>
-</footer>
+
 
 </body>
 </html>
