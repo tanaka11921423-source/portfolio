@@ -11,9 +11,9 @@
     --bg2:       #ffffff;
     --bg3:       #efefeb;
     --border:    #dddbd4;
-    --text:      #1a1a18;
-    --text-sub:  #4a4a46;
-    --text-muted:#7a7a74;
+    --text:      #111110;
+    --text-sub:  #3a3a36;
+    --text-muted:#636360;
     --accent:    #1a6b3c;
     --accent-lt: #e8f4ed;
     --accent2:   #b45309;
@@ -27,14 +27,22 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; font-size: 16px; }
   body {
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 1.85;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* PCでは確実にハンバーガーを非表示・ナビを表示 */
+  @media (min-width: 769px) {
+    .hamburger { display: none !important; }
+    .mobile-menu { display: none !important; }
+    .nav-links { display: flex !important; }
   }
   body::after {
     content: '';
@@ -62,22 +70,85 @@
     height: 54px;
   }
   .nav-logo {
-    font-family: var(--display); font-size: 0.95rem; font-weight: 800;
+    font-family: var(--display); font-size: 1rem; font-weight: 800;
     color: var(--text); text-decoration: none; letter-spacing: 0.04em;
   }
-  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  /* HAMBURGER MENU */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none;
+    cursor: pointer; padding: 4px;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* モバイルメニュー */
+  .mobile-menu {
+    display: block;
+    position: fixed;
+    top: 60px; right: 0;
+    width: 220px;
+    background: var(--bg2);
+    border-left: var(--line);
+    border-bottom: var(--line);
+    border-radius: 0 0 0 var(--radius);
+    box-shadow: -4px 4px 20px rgba(0,0,0,0.08);
+    z-index: 150;
+    padding: 0.5rem 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-menu a {
+    display: block; padding: 1rem 1.5rem;
+    font-size: 0.93rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-sub); text-decoration: none;
+    border-bottom: var(--line); transition: background 0.2s, color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { background: var(--accent-lt); color: var(--accent); }
+
+  /* PCナビ：モバイルでは非表示 */
+  .nav-links {
+    display: none;
+    list-style: none;
+  }
   .nav-links a {
-    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--text-muted); text-decoration: none; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent); }
+
+  /* NAV サイズ */
+  .nav-inner { height: 60px; }
+  .nav-logo { font-size: 1.05rem; }
+
+  /* PC（769px以上）：ナビ表示、ハンバーガー非表示 */
+  @media (min-width: 769px) {
+    .hamburger { display: none; }
+    .mobile-menu { display: none !important; }
+    .nav-links { display: flex; gap: 1.8rem; }
+  }
+  .mobile-menu a { font-size: 0.92rem; padding: 1rem 1.5rem; }
 
   /* HERO */
   .hero { padding: 5rem 0 4rem; border-bottom: var(--line); }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 0.5rem;
     background: var(--accent-lt); color: var(--accent);
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em;
     text-transform: uppercase; padding: 0.35rem 0.9rem;
     border-radius: 100px; margin-bottom: 2rem;
   }
@@ -88,12 +159,21 @@
     color: var(--text); margin-bottom: 0.3rem;
   }
   .hero-name-ja {
-    font-size: 0.95rem; font-weight: 400; color: var(--text-muted);
+    font-size: 1rem; font-weight: 400; color: var(--text-muted);
     letter-spacing: 0.25em; margin-bottom: 2rem;
   }
+  .hero-name-ja-sep { margin: 0 0.2em; }
+  .hero-name-ja-sub { display: inline; }
   .hero-desc {
-    font-size: 1rem; color: var(--text-sub); max-width: 540px;
+    font-size: 1.05rem; color: var(--text-sub); max-width: 540px;
     line-height: 2; margin-bottom: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 3rem 0 3rem; }
+    .hero-name-ja { letter-spacing: 0.08em; line-height: 1.8; }
+    .hero-name-ja-sep { display: none; }
+    .hero-name-ja-sub { display: block; font-size: 0.9rem; margin-top: 0.15rem; letter-spacing: 0.05em; }
+    .hero-desc { font-size: 0.97rem; }
   }
   .hero-desc strong { color: var(--text); font-weight: 500; }
 
@@ -104,35 +184,84 @@
     max-width: 540px; margin-bottom: 2rem;
   }
   .hero-vision-label {
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--accent); font-weight: 500; margin-bottom: 0.4rem;
   }
   .hero-vision-text {
-    font-size: 0.88rem; color: var(--text-sub); line-height: 1.85;
+    font-size: 0.93rem; color: var(--text-sub); line-height: 1.85;
   }
   .hero-vision-text strong { color: var(--text); font-weight: 500; }
 
   .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .chip {
-    font-size: 0.72rem; padding: 0.3rem 0.8rem; border-radius: 100px;
+    font-size: 0.85rem; padding: 0.3rem 0.8rem; border-radius: 100px;
     border: var(--line); color: var(--text-sub); background: var(--bg2);
   }
   .chip.hi {
     background: var(--accent-lt); border-color: var(--accent);
     color: var(--accent); font-weight: 500;
   }
+  .chip.ai {
+    background: var(--accent2-lt);
+    border-color: var(--accent2);
+    color: var(--accent2);
+    font-weight: 500;
+  }
 
   /* SECTION */
   .sec { padding: 4rem 0; border-bottom: var(--line); }
   .sec-label {
-    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--text-muted); margin-bottom: 2rem;
     display: flex; align-items: center; gap: 0.8rem;
   }
   .sec-label::after { content:''; flex:1; height:1px; background:var(--border); }
   .sec-title {
-    font-family: var(--serif); font-size: clamp(1.4rem, 3.5vw, 2.1rem);
-    font-weight: 400; line-height: 1.3; color: var(--text); margin-bottom: 2rem;
+    font-family: var(--serif); font-size: clamp(1.6rem, 3.8vw, 2.3rem);
+    font-weight: 400; line-height: 1.4; color: var(--text); margin-bottom: 2rem;
+    text-wrap: pretty;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 768px) {
+    .sec-title { font-size: 1.35rem; line-height: 1.55; }
+  }
+
+  /* 日本語テキスト共通設定 */
+  p, li, td, .work-desc, .about-body, .strength-body,
+  .philosophy-body, .vision-cell-text, .banner-caption,
+  .hero-desc, .hero-vision-text {
+    overflow-wrap: break-word;
+    line-break: strict;
+    word-break: auto-phrase;
+  }
+
+  /* PC：1行あたりの文字数を適切に制限 */
+  .about-body p,
+  .work-desc,
+  .strength-body,
+  .philosophy-body p,
+  .vision-cell-text {
+    max-width: 52em;
+  }
+
+  /* スマホ：余白を確保して行長を短くする */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 1.2rem; }
+    .about-body p,
+    .work-desc,
+    .strength-body,
+    .philosophy-body p,
+    .vision-cell-text,
+    .hero-desc,
+    .hero-vision-text {
+      max-width: 100%;
+      font-size: 0.97rem;
+      line-height: 2;
+    }
+    .work-body { padding: 1.2rem; }
+    .strength-cell { padding: 1.4rem; }
+    .banner-caption { font-size: 0.82rem; line-height: 1.7; }
   }
 
   /* ABOUT */
@@ -140,15 +269,65 @@
     display: grid; grid-template-columns: 3fr 2fr;
     gap: 3rem; align-items: start;
   }
-  @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
   .about-body { color: var(--text-sub); }
-  .about-body p + p { margin-top: 1rem; }
+  .about-body p + p { margin-top: 1.2rem; }
   .about-body strong { color: var(--text); font-weight: 500; }
+
+  /* BACK TO TOP */
+  .back-to-top {
+    position: fixed;
+    bottom: 1.8rem; right: 1.8rem;
+    width: 46px; height: 46px;
+    background: var(--accent);
+    border: none; border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(26,107,60,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: #145730; }
+  .back-to-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* CAREER TIMELINE */
+  .career-timeline {
+    display: flex; flex-direction: column;
+    position: relative; padding-left: 1.4rem;
+  }
+  .career-timeline::before {
+    content: ''; position: absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 1px; background: var(--border);
+  }
+  .ct-item {
+    display: flex; gap: 0.8rem; align-items: flex-start;
+    position: relative; padding-bottom: 1.3rem;
+  }
+  .ct-item:last-child { padding-bottom: 0; }
+  .ct-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--bg2); border: 2px solid var(--border);
+    flex-shrink: 0; margin-top: 0.25rem;
+    position: absolute; left: -1.4rem;
+  }
+  .ct-dot-now { border-color: var(--accent); background: var(--accent); }
+  .ct-content { display: flex; flex-direction: column; gap: 0.15rem; }
+  .ct-year { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em; }
+  .ct-text { font-size: 0.8rem; color: var(--text-sub); line-height: 1.6; }
 
   .skill-block { display: flex; flex-direction: column; gap: 1.3rem; }
   .skill-head {
     display: flex; justify-content: space-between;
-    font-size: 0.78rem; margin-bottom: 0.4rem; color: var(--text-sub);
+    font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--text-sub);
   }
   .skill-head span:last-child { color: var(--text-muted); font-size: 0.7rem; }
   .skill-track { height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; }
@@ -159,11 +338,11 @@
 
   /* EXPERIENCE TABLE — 担当範囲の明示 */
   .exp-table {
-    width: 100%; border-collapse: collapse; font-size: 0.82rem;
+    width: 100%; border-collapse: collapse; font-size: 0.93rem;
     margin-top: 1.5rem;
   }
   .exp-table th {
-    text-align: left; font-size: 0.68rem; letter-spacing: 0.12em;
+    text-align: left; font-size: 0.8rem; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--text-muted); font-weight: 400;
     padding: 0 0.8rem 0.6rem; border-bottom: var(--line);
   }
@@ -181,14 +360,14 @@
     gap: 1px; background: var(--border);
     border: var(--line); border-radius: var(--radius); overflow: hidden;
   }
-  @media (max-width: 600px) { .strength-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .strength-grid { grid-template-columns: 1fr; } }
   .strength-cell { background: var(--bg2); padding: 1.8rem; }
   .strength-num {
     font-size: 1.5rem; font-weight: 700;
     color: var(--border); line-height: 1; margin-bottom: 0.7rem;
   }
-  .strength-title { font-size: 0.88rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
-  .strength-body { font-size: 0.82rem; color: var(--text-sub); line-height: 1.85; }
+  .strength-title { font-size: 0.93rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
+  .strength-body { font-size: 0.93rem; color: var(--text-sub); line-height: 1.85; }
   .strength-body strong { color: var(--text); font-weight: 500; }
 
   /* WORK CARDS */
@@ -199,26 +378,42 @@
   }
   .work-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(26,107,60,0.07); }
   .work-inner { display: grid; grid-template-columns: 180px 1fr; }
-  @media (max-width: 600px) { .work-inner { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .work-inner { grid-template-columns: 1fr; } }
   .work-thumb {
     background: var(--bg3); display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 0.4rem;
     padding: 1.5rem; border-right: var(--line); min-height: 160px;
   }
-  @media (max-width: 600px) { .work-thumb { border-right: none; border-bottom: var(--line); min-height: 90px; } }
+  @media (max-width: 768px) { .work-thumb { border-right: none; border-bottom: var(--line); min-height: 90px; } }
   .work-thumb-icon { font-size: 1.6rem; }
   .work-thumb-label { font-size: 0.62rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; }
   .work-body { padding: 1.6rem; }
-  .work-cat { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); font-weight: 500; margin-bottom: 0.4rem; }
-  .work-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.6rem; line-height: 1.4; }
-  .work-desc { font-size: 0.83rem; color: var(--text-sub); line-height: 1.85; margin-bottom: 1rem; }
+  .work-cat {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent2); font-weight: 500; margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+  .work-cat .work-date {
+    display: inline;
+    font-weight: 300; letter-spacing: 0;
+    text-transform: none;
+  }
+  @media (max-width: 768px) {
+    .work-cat .work-date { display: block; font-size: 0.82rem; margin-top: 0.1rem; }
+  }
+  .work-title {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+    margin-bottom: 0.6rem; line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .work-desc { font-size: 0.9rem; color: var(--text-sub); line-height: 1.85; margin-bottom: 1rem; }
   .work-desc strong { color: var(--text); font-weight: 500; }
 
   /* ── 担当範囲バッジ ── */
   .work-scope {
     background: var(--bg3); border: var(--line); border-radius: 4px;
     padding: 0.7rem 1rem; margin-bottom: 1rem;
-    font-size: 0.78rem; color: var(--text-sub);
+    font-size: 0.85rem; color: var(--text-sub);
   }
   .work-scope-label {
     font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
@@ -226,7 +421,7 @@
   }
   .scope-row { display: flex; flex-wrap: wrap; gap: 0.3rem; }
   .scope-tag {
-    font-size: 0.68rem; padding: 0.15rem 0.55rem;
+    font-size: 0.8rem; padding: 0.15rem 0.55rem;
     background: var(--bg2); border: var(--line); border-radius: 3px;
     color: var(--text-sub);
   }
@@ -236,23 +431,23 @@
   }
 
   .work-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
-  .work-tag { font-size: 0.65rem; padding: 0.2rem 0.6rem; border: var(--line); color: var(--text-muted); border-radius: 3px; }
+  .work-tag { font-size: 0.85rem; padding: 0.2rem 0.6rem; border: var(--line); color: var(--text-muted); border-radius: 3px; }
   .work-link {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.78rem; color: var(--accent); text-decoration: none;
+    font-size: 0.85rem; color: var(--accent); text-decoration: none;
     font-weight: 500;
   }
   .work-link:hover { text-decoration: underline; }
-  .work-link::after { content: '↗'; font-size: 0.68rem; }
+  .work-link::after { content: '↗'; font-size: 0.8rem; }
 
   /* BANNER */
-  .banner-intro { font-size: 0.88rem; color: var(--text-sub); line-height: 1.85; margin-bottom: 2rem; max-width: 580px; }
+  .banner-intro { font-size: 0.93rem; color: var(--text-sub); line-height: 1.85; margin-bottom: 2rem; max-width: 100%; }
   .banner-intro strong { color: var(--text); font-weight: 500; }
   .banner-grid {
     display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem; margin-bottom: 1.5rem;
   }
-  @media (max-width: 600px) { .banner-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .banner-grid { grid-template-columns: 1fr; } }
   .banner-card {
     background: var(--bg2); border: var(--line); border-radius: var(--radius);
     overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s;
@@ -261,34 +456,88 @@
   .banner-thumb {
     aspect-ratio: 5/4; background: var(--bg3);
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.65rem; color: var(--text-muted);
+    font-size: 0.85rem; color: var(--text-muted);
   }
-  .banner-caption { padding: 0.6rem 0.7rem; font-size: 0.68rem; color: var(--text-muted); line-height: 1.5; border-top: var(--line); }
-  .banner-caption strong { display: block; color: var(--text-sub); font-size: 0.72rem; margin-bottom: 0.1rem; }
+  .banner-caption { padding: 0.6rem 0.7rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; border-top: var(--line); }
+  .banner-caption strong { display: block; color: var(--text-sub); font-size: 0.85rem; margin-bottom: 0.1rem; }
 
-  /* ── 制作プロセスボックス ── */
-  .process-box {
-    background: var(--accent2-lt); border: 1px solid var(--accent2);
-    border-radius: var(--radius); padding: 1.2rem 1.4rem; margin-bottom: 1.5rem;
+  /* 制作プロセス：正円モチーフ */
+  .process-circle-wrap {
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    background: var(--bg2);
+    border: var(--line);
+    border-radius: var(--radius);
   }
   .process-box-title {
     font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent2); font-weight: 500; margin-bottom: 0.8rem;
+    color: var(--text-muted); font-weight: 500; margin-bottom: 0;
   }
-  .process-steps {
-    display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+  .process-circle-row {
+    display: flex; align-items: flex-start;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: nowrap; overflow-x: auto;
   }
-  .process-step {
-    font-size: 0.75rem; padding: 0.25rem 0.7rem;
-    background: var(--bg2); border: 1px solid rgba(180,83,9,0.2);
-    border-radius: 100px; color: var(--text-sub);
+  @media (max-width: 768px) {
+    .process-circle-row {
+      flex-direction: column;
+      align-items: stretch;
+      overflow-x: visible;
+      gap: 0;
+    }
   }
-  .process-arrow { color: var(--accent2); font-size: 0.7rem; }
-
+  .process-circle-item {
+    display: flex; flex-direction: column;
+    align-items: center; flex: 1; min-width: 80px;
+  }
+  @media (max-width: 768px) {
+    .process-circle-item {
+      flex-direction: row;
+      align-items: center;
+      min-width: unset;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: var(--line);
+    }
+    .process-circle-item:last-child { border-bottom: none; }
+  }
+  .process-circle {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--accent-lt); border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .process-circle-last { background: var(--accent); }
+  .process-circle-last .process-circle-num { color: #fff; }
+  .process-circle-num {
+    font-size: 0.8rem; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.05em;
+  }
+  .process-circle-line {
+    width: 1px; height: 10px;
+    background: var(--accent); opacity: 0.3;
+  }
+  @media (max-width: 768px) { .process-circle-line { display: none; } }
+  .process-circle-label {
+    font-size: 0.85rem; color: var(--text-sub);
+    text-align: center; line-height: 1.5; padding: 0 0.2rem;
+  }
+  @media (max-width: 768px) {
+    .process-circle-label { text-align: left; font-size: 0.93rem; }
+  }
+  .process-connector {
+    flex: 1; height: 2px;
+    background: var(--accent); opacity: 0.2;
+    margin-top: 25px; min-width: 10px;
+  }
+  @media (max-width: 768px) {
+    .process-connector { display: none; }
+  }
   .banner-note {
     background: var(--accent-lt); border: 1px solid var(--accent);
     border-radius: var(--radius); padding: 1.2rem 1.4rem;
-    font-size: 0.82rem; color: var(--text-sub); line-height: 1.85;
+    font-size: 0.93rem; color: var(--text-sub); line-height: 1.85;
   }
   .banner-note strong { color: var(--accent); font-weight: 500; }
 
@@ -298,7 +547,7 @@
     font-style: italic; color: var(--text-sub); line-height: 1.8;
     border-left: 3px solid var(--accent); padding-left: 1.5rem; margin: 2rem 0;
   }
-  .philosophy-body { font-size: 0.88rem; color: var(--text-sub); line-height: 1.9; max-width: 580px; }
+  .philosophy-body { font-size: 0.93rem; color: var(--text-sub); line-height: 1.9; max-width: 580px; }
   .philosophy-body p + p { margin-top: 1rem; }
   .philosophy-body strong { color: var(--text); font-weight: 500; }
 
@@ -309,13 +558,13 @@
     border: var(--line); border-radius: var(--radius); overflow: hidden;
     margin-top: 2rem;
   }
-  @media (max-width: 600px) { .vision-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .vision-grid { grid-template-columns: 1fr !important; } }
   .vision-cell { background: var(--bg2); padding: 1.5rem; }
   .vision-cell-label {
-    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--text-muted); margin-bottom: 0.5rem;
   }
-  .vision-cell-text { font-size: 0.84rem; color: var(--text-sub); line-height: 1.85; }
+  .vision-cell-text { font-size: 0.92rem; color: var(--text-sub); line-height: 1.85; }
   .vision-cell-text strong { color: var(--text); font-weight: 500; }
 
   /* NOTION GUIDE */
@@ -324,7 +573,7 @@
     border-radius: var(--radius); padding: 1.5rem 1.8rem;
   }
   .notion-guide-title {
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--text-muted); font-weight: 400; margin-bottom: 1.2rem;
   }
   .notion-step {
@@ -332,7 +581,7 @@
     border-bottom: var(--line); font-size: 0.81rem; color: var(--text-sub); line-height: 1.8;
   }
   .notion-step:last-child { border-bottom: none; }
-  .notion-step-n { font-family: var(--display); font-size: 0.95rem; font-weight: 800; color: var(--accent2); min-width: 1.4rem; }
+  .notion-step-n { font-family: var(--display); font-size: 1rem; font-weight: 800; color: var(--accent2); min-width: 1.4rem; }
   .notion-step strong { color: var(--text); font-weight: 500; }
 
   /* FOOTER */
@@ -340,17 +589,40 @@
   .footer-inner {
     max-width: var(--max); margin: 0 auto; padding: 0 1.5rem;
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.05em;
+    font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em;
   }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-  .hero-badge   { animation: fadeUp 0.5s 0.05s both; }
-  .hero-name    { animation: fadeUp 0.5s 0.15s both; }
-  .hero-name-ja { animation: fadeUp 0.5s 0.2s  both; }
-  .hero-desc    { animation: fadeUp 0.5s 0.3s  both; }
-  .hero-vision  { animation: fadeUp 0.5s 0.38s both; }
-  .hero-chips   { animation: fadeUp 0.5s 0.46s both; }
+  .sp-only { display: none; }
+  @media (max-width: 768px) { .sp-only { display: block; } }
+  #about    { background: var(--bg2); }
+  #why      { background: var(--bg3); }
+  #works    { background: var(--bg2); }
+  #banner   { background: #f0f5f1; }
+  #stance   { background: var(--bg2); }
+
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* バナー画像フェードイン */
+  .banner-img-fade {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .banner-img-fade.visible {
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
@@ -358,49 +630,59 @@
 <!-- NAV -->
 <nav aria-label="メインナビゲーション">
   <div class="nav-inner">
-    <a class="nav-logo" href="#top">TANAKA JUNDAI</a>
+    <a class="nav-logo" href="#top">PORTFOLIO</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#why">Why Director</a></li>
-      <li><a href="#works">Works</a></li>
-      <li><a href="#banner">Banner</a></li>
-      <li><a href="#stance">Stance</a></li>
+      <li><a href="#about">Profile</a></li>
+      <li><a href="#why">Approach</a></li>
+      <li><a href="#works">Movie</a></li>
+      <li><a href="#banner">Web Banner</a></li>
+      <li><a href="#stance">Vision</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- モバイルメニュー -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="モバイルメニュー">
+  <a href="#about">Profile</a>
+  <a href="#why">Approach</a>
+  <a href="#works">Movie</a>
+  <a href="#banner">Web Banner</a>
+  <a href="#stance">Vision</a>
+</div>
 
 <!-- HERO -->
 <div id="top">
   <div class="wrap">
     <section class="hero" aria-labelledby="hero-name">
-      <p class="hero-badge">Portfolio 2026 — WEB Designer / Director志望</p>
       <h1 class="hero-name" id="hero-name">田中 純大</h1>
-      <p class="hero-name-ja">Tanaka Jundai｜1999年生まれ、福島県出身</p>
+      <p class="hero-name-ja">
+        Tanaka Jundai<span class="hero-name-ja-sep">｜</span><span class="hero-name-ja-sub">1999年生まれ、福島県出身</span>
+      </p>
       <p class="hero-desc">
-        幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点です。<br>
-        製造業での品質管理を経てクリエイティブ分野へ転身。2022年にフリーランスとして独立後、
-        現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
+        幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点。製造業での品質管理を経てクリエイティブ分野へ転身し、現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
       </p>
 
       <!-- キャリアビジョン -->
       <div class="hero-vision" role="note" aria-label="キャリアビジョン">
-        <p class="hero-vision-label">Career Vision</p>
+        <p class="hero-vision-label">私について</p>
         <p class="hero-vision-text">
-          デザイナーとして制作経験を積みながら、将来的には
-          <strong>クリエイティブとビジネス目標を繋げられるWEBディレクター</strong>へのステップアップを目指しています。
-          データに基づく改善提案や制作フローの効率化など、制作の枠を超えた貢献を続けていきたいと考えています。
+          デザイナーとしての制作経験と、前職で培った<strong>プロセス管理・品質安定化の思考</strong>を土台に、
+          UX／UI視点を持ちながら<strong>プロジェクト全体をディレクションできる人材</strong>へのステップアップを目指しています。
+          「作って終わり」ではなく、データと対話しながら継続的に改善し、
+          ビジネス目標に直結するクリエイティブを生み出すことが目標です。
         </p>
       </div>
 
-      <div class="hero-chips" role="list" aria-label="スキルタグ">
-        <span class="chip hi" role="listitem">WEB Designer</span>
-        <span class="chip hi" role="listitem">Director志望</span>
-        <span class="chip hi" role="listitem">Visual Design</span>
-        <span class="chip hi" role="listitem">Motion Graphics</span>
-        <span class="chip" role="listitem">Photoshop 約4年</span>
-        <span class="chip" role="listitem">After Effects</span>
-        <span class="chip" role="listitem">Premiere Pro</span>
-        <span class="chip" role="listitem">Live2D</span>
+      <div class="hero-chips" role="list" aria-label="使用ツール・AI">
+        <span class="chip hi" role="listitem">Photoshop</span>
+        <span class="chip hi" role="listitem">After Effects</span>
+        <span class="chip hi" role="listitem">Premiere Pro</span>
+        <span class="chip hi" role="listitem">Live2D</span>
+        <span class="chip ai" role="listitem">Claude Code</span>
+        <span class="chip ai" role="listitem">Gemini</span>
       </div>
     </section>
   </div>
@@ -409,8 +691,8 @@
 <!-- ABOUT -->
 <section id="about" class="sec" aria-labelledby="about-title">
   <div class="wrap">
-    <p class="sec-label">01 — About</p>
-    <h2 class="sec-title" id="about-title">制作の背景と、<br>目指していること</h2>
+    <p class="sec-label">01 — Profile</p>
+    <h2 class="sec-title" id="about-title">経歴とスキル</h2>
 
     <!-- 本文 ＋ スキルバー：2カラム -->
     <div class="about-grid">
@@ -420,8 +702,13 @@
           <strong>ターゲットに刺さる世界観を構築するデザインの礎</strong>になっています。
         </p>
         <p>
+          高校卒業後は製造業の品質管理職に従事。工程ごとの品質チェックと<strong>PDCAサイクルによる改善習慣</strong>を身につけました。
+          この「手戻りを出さないプロセス管理の思考」は、現在の制作でのコンセプトアートによる事前すり合わせや、
+          データに基づく改善提案に直接活きています。
+        </p>
+        <p>
           2022年より業務委託での制作活動をスタートし、現在は広告代理店にて<strong>月100本を超えるバナー制作</strong>を担当。
-          データに基づく改善提案や制作フローの効率化を自発的に行い、
+          単なる制作にとどまらず、制作フローの効率化や改善提案を自発的に行い、
           チーム全体のパフォーマンス向上にも寄与してきました。
         </p>
         <p>
@@ -464,6 +751,34 @@
             </div>
           </div>
         </div>
+
+        <!-- キャリア年表 -->
+        <div style="margin-top:2rem">
+          <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem">Career Timeline</p>
+          <div class="career-timeline">
+            <div class="ct-item">
+              <div class="ct-dot"></div>
+              <div class="ct-content">
+                <span class="ct-year">〜2021</span>
+                <span class="ct-text">製造業 / 品質管理職<br>PDCAサイクル・工程管理を習得</span>
+              </div>
+            </div>
+            <div class="ct-item">
+              <div class="ct-dot"></div>
+              <div class="ct-content">
+                <span class="ct-year">2022</span>
+                <span class="ct-text">業務委託での制作活動スタート<br>Photoshop・映像制作を独学</span>
+              </div>
+            </div>
+            <div class="ct-item">
+              <div class="ct-dot ct-dot-now"></div>
+              <div class="ct-content">
+                <span class="ct-year" style="color:var(--accent)">現在</span>
+                <span class="ct-text">広告代理店 / WEBデザイナー<br>月100本超のバナー制作を担当</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -471,26 +786,22 @@
     <table class="exp-table" aria-label="経歴・制作実績サマリ" style="margin-top:2.5rem">
       <thead>
         <tr>
-          <th>経験</th>
-          <th>内容・実績</th>
+          <th>スキル・経験</th>
+          <th>実績・内容</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>現職（広告代理店）</td>
-          <td>飲食ポータルサイトの広告バナー制作・月100本超／データ改善提案・制作フロー効率化</td>
+          <td>バナー制作<br><small style="font-weight:300;color:var(--text-muted)">Photoshop 約4年</small></td>
+          <td>広告代理店にて飲食ポータルサイトの広告バナーを担当・月100本超。求人媒体「体入ショコラ」向けサンプルバナーを自主制作・提供（現職）</td>
         </tr>
         <tr>
-          <td>フリーランス（2022〜）</td>
-          <td>求人媒体「体入ショコラ」向けサンプルバナーを自主制作・提供／Photoshop 約4年</td>
-        </tr>
-        <tr>
-          <td>映像制作</td>
-          <td>MV 2本・配信演出映像 1本、合計3件／After Effects・Premiere Pro 約1年</td>
+          <td>映像編集<br><small style="font-weight:300;color:var(--text-muted)">After Effects・Premiere Pro 約1年</small></td>
+          <td>MV 2本・配信演出映像 1本、合計3件</td>
         </tr>
         <tr>
           <td>クライアント対応</td>
-          <td>要望のヒアリング・コンセプトアートによる合意形成／映像制作案件</td>
+          <td>要望のヒアリング・コンセプトアートによる認識合わせを実践（映像制作案件）</td>
         </tr>
         <tr>
           <td>Live2D</td>
@@ -504,16 +815,17 @@
 <!-- WHY DIRECTOR -->
 <section id="why" class="sec" aria-labelledby="why-title">
   <div class="wrap">
-    <p class="sec-label">02 — Why Director</p>
-    <h2 class="sec-title" id="why-title">WEBディレクターを目指す理由と、<br>活かせると思っている経験</h2>
+    <p class="sec-label">02 — Approach</p>
+    <h2 class="sec-title" id="why-title">制作で大切にしている<br>4つの考え方</h2>
     <div class="strength-grid" role="list">
 
       <div class="strength-cell" role="listitem">
         <div class="strength-num" aria-hidden="true">01</div>
-        <h3 class="strength-title">作って終わりにしない</h3>
+        <h3 class="strength-title">PDCAで品質を安定させる</h3>
         <p class="strength-body">
-          データを確認しながら改善を重ねることに関心があります。
-          現職でも改善提案や制作フローの効率化を自発的に行ってきました。
+          前職の製造業で培ったPDCAサイクルと手戻りを出さないプロセス管理の習慣が、
+          現在の制作における改善提案や効率化の土台になっています。
+          「作って終わり」にしない姿勢は、職種が変わっても変わりません。
         </p>
       </div>
 
@@ -551,8 +863,8 @@
 <!-- WORKS: VIDEO -->
 <section id="works" class="sec" aria-labelledby="works-title">
   <div class="wrap">
-    <p class="sec-label">03 — Works / Video</p>
-    <h2 class="sec-title" id="works-title">映像制作の実績</h2>
+    <p class="sec-label">03 — Movie / 映像実績</p>
+    <h2 class="sec-title" id="works-title">映像実績</h2>
     <div class="works-stack">
 
       <!-- LOVE ANTHEM -->
@@ -569,7 +881,7 @@
         </div>
         <div class="work-inner" style="grid-template-columns:1fr">
           <div class="work-body">
-            <p class="work-cat">依頼案件 — 実写×イラスト合成MV｜<span style="font-weight:300">2022年12月</span></p>
+            <p class="work-cat">依頼案件 — 実写×イラスト合成MV｜<span class="work-date">2022年12月</span></p>
             <h3 class="work-title">「LOVE ANTHEM」Music Video</h3>
 
             <div class="work-scope" aria-label="担当範囲">
@@ -615,7 +927,7 @@
         </div>
         <div class="work-inner" style="grid-template-columns:1fr">
           <div class="work-body">
-            <p class="work-cat">自主制作 — コンセプトから一人で完結｜<span style="font-weight:300">2022年12月</span></p>
+            <p class="work-cat">自主制作 — コンセプトから一人で完結｜<span class="work-date">2022年12月</span></p>
             <h3 class="work-title">「部屋に照らされた光」/ 可不</h3>
 
             <div class="work-scope" aria-label="担当範囲">
@@ -660,7 +972,7 @@
         </div>
         <div class="work-inner" style="grid-template-columns:1fr">
           <div class="work-body">
-            <p class="work-cat">依頼案件（独学） — After Effects 配信演出｜<span style="font-weight:300">2026年4月</span></p>
+            <p class="work-cat">依頼案件（独学） — After Effects 配信演出｜<span class="work-date">2026年4月</span></p>
             <h3 class="work-title">配信スタート演出映像</h3>
 
             <div class="work-scope" aria-label="担当範囲">
@@ -680,6 +992,18 @@
               制作途中の大きな方向転換を防ぎながら、スムーズに進めることができました。
               冒頭から段階的に期待感が高まるような演出の流れを意識して組み立てています。
             </p>
+
+            <div style="margin-bottom:1rem">
+              <p style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.6rem">Concept Art</p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem">
+                <div style="position:relative;padding-top:56.25%;background:var(--bg3);border-radius:4px;overflow:hidden;border:var(--line)">
+                  <img src="concept1.png" alt="コンセプトアート案1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+                </div>
+                <div style="position:relative;padding-top:56.25%;background:var(--bg3);border-radius:4px;overflow:hidden;border:var(--line)">
+                  <img src="concept2.png" alt="コンセプトアート案2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;">
+                </div>
+              </div>
+            </div>
             <div class="work-tags" aria-label="使用ツール">
               <span class="work-tag">After Effects</span>
               <span class="work-tag">モーショングラフィックス</span>
@@ -696,72 +1020,115 @@
 <!-- BANNER -->
 <section id="banner" class="sec" aria-labelledby="banner-title">
   <div class="wrap">
-    <p class="sec-label">04 — Works / Banner</p>
-    <h2 class="sec-title" id="banner-title">求人バナー サンプル制作<br><small style="font-size:0.5em;font-weight:300;color:var(--text-muted)">体入ショコラ向け 自主制作・自主提供 / 10パターン｜2026年5月制作</small></h2>
+    <p class="sec-label">04 — Works / Webバナー実績</p>
+    <h2 class="sec-title" id="banner-title">求人バナー<span style="display:inline-block">サンプル制作</span><br><small style="font-size:0.5em;font-weight:300;color:var(--text-muted)">体入ショコラ向け 自主制作・自主提供 / 10パターン｜2026年5月制作</small></h2>
 
-    <!-- 制作プロセスの可視化 -->
-    <div class="process-box" aria-label="制作プロセス">
+    <!-- 制作プロセス：正円モチーフ -->
+    <div class="process-circle-wrap" aria-label="制作プロセス">
       <p class="process-box-title">制作プロセス（各バナー共通）</p>
-      <div class="process-steps">
-        <span class="process-step">ターゲット確認</span>
-        <span class="process-arrow">→</span>
-        <span class="process-step">訴求軸の決定</span>
-        <span class="process-arrow">→</span>
-        <span class="process-step">情報優先順位の設計</span>
-        <span class="process-arrow">→</span>
-        <span class="process-step">素材選定・制作</span>
-        <span class="process-arrow">→</span>
-        <span class="process-step">確認・調整</span>
+      <div class="process-circle-row">
+
+        <div class="process-circle-item">
+          <div class="process-circle">
+            <span class="process-circle-num">01</span>
+          </div>
+          <div class="process-circle-line"></div>
+          <p class="process-circle-label">ターゲット確認</p>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-circle-item">
+          <div class="process-circle">
+            <span class="process-circle-num">02</span>
+          </div>
+          <div class="process-circle-line"></div>
+          <p class="process-circle-label">訴求軸の決定</p>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-circle-item">
+          <div class="process-circle">
+            <span class="process-circle-num">03</span>
+          </div>
+          <div class="process-circle-line"></div>
+          <p class="process-circle-label">情報優先順位の設計</p>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-circle-item">
+          <div class="process-circle">
+            <span class="process-circle-num">04</span>
+          </div>
+          <div class="process-circle-line"></div>
+          <p class="process-circle-label">素材選定・制作</p>
+        </div>
+
+        <div class="process-connector"></div>
+
+        <div class="process-circle-item">
+          <div class="process-circle process-circle-last">
+            <span class="process-circle-num">05</span>
+          </div>
+          <div class="process-circle-line"></div>
+          <p class="process-circle-label">確認・調整</p>
+        </div>
+
       </div>
     </div>
 
     <p class="banner-intro">
-      ナイトワーク求人媒体「体入ショコラ」向けに、<strong>自主的に制作して提供したサンプルバナー</strong>です。
-      営業担当者が店舗へ提案する際の訴求素材として活用されることを想定し、
-      業態・時給帯・ターゲット層に応じて複数のトーン&マナーを用意しました。
-      指示を待つのではなく、<strong>「こういうものがあれば役に立つ」と自分で考えて動いた</strong>経験です。
+      ナイトワーク求人媒体「体入ショコラ」向けに、<strong>自主的に制作して提供した<span style="display:inline-block">サンプルバナーです。</span></strong>
+    </p>
+    <p class="banner-intro">
+      未経験歓迎・高時給・新店舗オープンなど、<strong>ターゲットと訴求軸を打ち分けた</strong>デザイン設計を意識しています。
+    </p>
+    <p class="banner-intro">
+      単に作るだけでなく、<strong>クリエイティブごとのCTR（クリック率）などのデータを意識した改善提案</strong>にも積極的に関心を持って取り組んでいます。
     </p>
 
     <div class="banner-grid" role="list" aria-label="バナー制作一覧">
       <div class="banner-card" role="listitem">
-        <img src="banner1.jpg" alt="バナー1" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
-        <div class="banner-caption"><strong>モノクロ × ゴールド</strong>AI生成女性で高級感を演出。「一流ホテルクラス」という言葉と格調を合わせる</div>
+        <img src="banner1.jpg" alt="バナー1" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <div class="banner-caption"><strong>モノクロ × ゴールド</strong>AI生成女性で高級感を演出、「一流ホテルクラス」という言葉と格調を合わせる</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner2.jpg" alt="バナー2" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
-        <div class="banner-caption"><strong>イラスト × 暗色</strong>モダンなイラストで親近感を演出。高単価を落ち着いたトーンで伝える</div>
+        <img src="banner2.jpg" alt="バナー2" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <div class="banner-caption"><strong>イラスト × 暗色</strong>モダンなイラストで親近感を演出、高単価を落ち着いたトーンで伝える</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner3.jpg" alt="バナー3" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <img src="banner3.jpg" alt="バナー3" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>実写 × 夏カラー</strong>夏らしい明るい配色と実写で、季節感とリアリティを両立</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner4.jpg" alt="バナー4" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <img src="banner4.jpg" alt="バナー4" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>アニメ調 × マゼンタ</strong>ターゲットが見慣れているイラスト表現で親しみやすさを重視</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner5.jpg" alt="バナー5" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
-        <div class="banner-caption"><strong>夏祭り × イラスト</strong>浴衣モチーフで季節感を演出。短期・単発応募への促進を狙う</div>
+        <img src="banner5.jpg" alt="バナー5" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <div class="banner-caption"><strong>夏祭り × イラスト</strong>浴衣モチーフで季節感を演出、短期・単発応募への促進を狙う</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner6.jpg" alt="バナー6" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <img src="banner6.jpg" alt="バナー6" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>AI背景 × 高級感</strong>店内写真なしでも、AI生成の内装で格調のある空間を表現</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner7.jpg" alt="バナー7" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <img src="banner7.jpg" alt="バナー7" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
         <div class="banner-caption"><strong>水色 × 黄色（補色設計）</strong>補色に近い配色でコントラストを最大化し、タイムライン上で目が止まりやすい構造を意識</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner8.jpg" alt="バナー8" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
-        <div class="banner-caption"><strong>AI実写風 × ホテル感</strong>笑顔の女性で安心感を演出。「豪華な内装」を先出しして期待感を高める</div>
+        <img src="banner8.jpg" alt="バナー8" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <div class="banner-caption"><strong>AI実写風 × ホテル感</strong>笑顔の女性で安心感を演出、「豪華な内装」を先出しして期待感を高める</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner9.jpg" alt="バナー9" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
-        <div class="banner-caption"><strong>大理石 × コスメ小物 × コラージュ</strong>店内写真・AI女性・コスメ小物を組み合わせ、高級感と女性らしさを両立。情報量の多さをレイアウトで整理</div>
+        <img src="banner9.jpg" alt="バナー9" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <div class="banner-caption"><strong>大理石 × コスメ小物 × コラージュ</strong>店内写真・AI女性・コスメ小物を組み合わせ、高級感と女性らしさを両立、情報量の多さをレイアウトで整理</div>
       </div>
       <div class="banner-card" role="listitem">
-        <img src="banner10.jpg" alt="バナー10" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
-        <div class="banner-caption"><strong>アニメ × 街並み × SNSハッシュタグ</strong>「#未経験者さん積極採用中」でSNSネイティブ層への親和性を意識。明るい街並み背景で開放感を演出</div>
+        <img src="banner10.jpg" alt="バナー10" class="banner-img-fade" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;">
+        <div class="banner-caption"><strong>アニメ × 街並み × SNSハッシュタグ</strong>「#未経験者さん積極採用中」でSNSネイティブ層への親和性を意識、明るい街並み背景で開放感を演出</div>
       </div>
     </div>
 
@@ -769,7 +1136,7 @@
       <strong>制作の背景：</strong>
       「こういうサンプルがあれば営業の提案がしやすくなる」と自分で考え、業務の傍ら自主的に制作して提供しました。
       各バナーは「どの情報を最初に見せるか」の優先順位を決めてから制作を開始しており、
-      時給・新店舗・未経験歓迎のどれを前面に出すかで、ターゲットへの届き方が変わることを意識しています。
+      時給・新店舗・未経験歓迎のどれを前面に出すかで、ターゲットへの届き方が変わることを意識しています
       この<strong>「必要なものを自分で考えて動く」姿勢</strong>は、ディレクター業務でも活かしていきたいと思っています。
     </div>
   </div>
@@ -778,53 +1145,51 @@
 <!-- STANCE -->
 <section id="stance" class="sec" aria-labelledby="stance-title">
   <div class="wrap">
-    <p class="sec-label">05 — Stance & Vision</p>
-    <h2 class="sec-title" id="stance-title">制作に対するスタンスと、<br>これからのこと</h2>
+    <p class="sec-label">05 — Vision / どんなクリエイターになりたいか</p>
+    <h2 class="sec-title" id="stance-title">目指すクリエイター像</h2>
 
     <blockquote class="philosophy-quote">
-      広告を出す企業と、それを受け取る人。<br>
-      その両方にとって意味のあるデザインを作りたい。
+      デザインをビジネスの言葉で語れる、<br>
+      UX視点を持つWEBディレクターへ
     </blockquote>
 
     <div class="philosophy-body">
       <p>
-        制作するとき、最初に考えるのは「誰が・どこで・どんな状況でこれを見るか」です。
-        ターゲットの行動や文脈を起点に、「何をどの順番で伝えるか」を決めてから手を動かすようにしています。
-        きれいに作ることよりも、<strong>必要な人に必要な情報が届く構造を作ること</strong>を優先しています。
+        「きれいに作れるデザイナー」ではなく、<strong>なぜそのデザインがビジネスに効くのかを説明でき、
+        ユーザー体験の設計から制作進行まで統括できるディレクター</strong>を目指しています。
+        現在のバナー制作で積み上げてきた「訴求軸の打ち分け」「情報優先順位の設計」「データを意識した改善」は、
+        すべてその土台になると考えています。
       </p>
       <p>
-        また、作る前の「認識合わせ」を大切にしています。
-        クライアントの言葉の背景にある意図を確認し、
-        <strong>ゴールを共有してから動き出す</strong>ことで、制作中の手戻りや認識のズレを減らせると実感しています。
-        この進め方は、ディレクション業務でも軸にしていきたい姿勢です。
+        ディレクターとして仕事をする中で、UX／UI設計の知識と実践力を同時に積み上げていくことが
+        自分のキャリアの方向性です。職種を順番に経由するのではなく、
+        <strong>制作・分析・進行管理を横断しながら、段階的にディレクターとしての領域を広げていきたい</strong>と考えています。
       </p>
     </div>
 
-    <div class="vision-grid" role="list" aria-label="大切にしていること" style="grid-template-columns:repeat(3,1fr)">
+    <div class="vision-grid" role="list" aria-label="キャリアステップ" style="grid-template-columns:repeat(3,1fr)">
       <div class="vision-cell" role="listitem">
-        
-        <p class="vision-cell-label">制作において大切にしていること</p>
+        <p class="vision-cell-label">Step 01 ／ 現在地</p>
         <p class="vision-cell-text">
-          「なぜこのデザインか」を言葉で説明できることを意識しています。
-          感覚的な判断ではなく、<strong>ターゲット・文脈・目的の3点から根拠を持って決断する</strong>ことで、
-          チームやクライアントへの説明がしやすくなると考えています。
+          WEBデザイナーとして月100本超のバナー制作を担当。
+          <strong>訴求軸の設計・データを意識した改善提案・制作フロー効率化</strong>を自発的に行い、
+          ディレクターとしての思考習慣を実務の中で培っています。
         </p>
       </div>
       <div class="vision-cell" role="listitem">
-        
-        <p class="vision-cell-label">ディレクターとして目指したいこと</p>
+        <p class="vision-cell-label">Step 02 ／ 移行期</p>
         <p class="vision-cell-text">
-          データと制作の両方を理解した上で、<strong>クリエイティブとビジネス目標を繋げられるディレクター</strong>になることが目標です。
-          現場の温度感を感じながら、改善を重ねられる仕事に携わり続けたいと思っています。
+          制作進行・クライアント折衝・スケジュール管理などの<strong>ディレクション業務を担いながら</strong>、
+          ユーザー行動の分析・情報設計・プロトタイピングといった
+          UX／UIの実践力を現場で習得していきます。
         </p>
       </div>
       <div class="vision-cell" role="listitem">
-        
-        <p class="vision-cell-label">デザイナーとして持ち続けたい視点</p>
+        <p class="vision-cell-label">Step 03 ／ 目指す姿</p>
         <p class="vision-cell-text">
-          「このデザインが仕事の成果にどう直結するか」を具体的な言葉で説明できるデザイナーを目指しています。
-          <strong>なぜそのデザインがビジネスに効くのかをロジックで示せること</strong>が、
-          信頼されるクリエイターの条件だと考えています。
+          <strong>UX視点を持つWEBディレクター</strong>として、
+          ビジネス目標・ユーザー体験・制作品質の三軸を統合しながら
+          プロジェクト全体をリードできる人材へ。
         </p>
       </div>
     </div>
@@ -834,6 +1199,132 @@
 
 
 
+
+<!-- トップへ戻るボタン -->
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script>
+  // トップへ戻るボタン
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ハンバーガーメニュー
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  }
+
+  // メニュー内リンク：ブラウザ遷移を止めてJS制御スクロールに変更
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const targetId = link.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      closeMenu();
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    });
+  });
+
+  // PCナビリンク
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const targetId = link.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // メニュー外タップで閉じる
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // スクロールアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  // アニメーション対象を自動で登録
+  document.querySelectorAll(
+    '.sec-label, .sec-title, .about-body, .skill-block, .exp-table, ' +
+    '.strength-cell, .work-card, .banner-card, .banner-intro, .process-box, ' +
+    '.banner-note, .philosophy-quote, .philosophy-body, .vision-cell'
+  ).forEach((el, i) => {
+    el.classList.add('reveal');
+    const siblings = Array.from(el.parentElement.children);
+    const idx = siblings.indexOf(el) % 4;
+    if (idx > 0) el.classList.add(`reveal-delay-${idx}`);
+    observer.observe(el);
+  });
+
+  // バナー画像フェードイン（不透明度のみ・遅延あり）
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        const siblings = Array.from(img.closest('.banner-grid').querySelectorAll('.banner-img-fade'));
+        const idx = siblings.indexOf(img);
+        setTimeout(() => img.classList.add('visible'), idx * 80);
+        imgObserver.unobserve(img);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.banner-img-fade').forEach(img => imgObserver.observe(img));
+
+  // ── スクロール進捗バー ──
+  const progressBar = document.createElement('div');
+  progressBar.style.cssText = `
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    z-index: 9999; transition: width 0.1s linear;
+    pointer-events: none;
+  `;
+  document.body.appendChild(progressBar);
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  });
+</script>
 
 </body>
 </html>
