@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>田中純大 | Portfolio | 田中純大 Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Syne:wght@700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Syne:wght@700;800&family=Lora:ital,wght@0,400;1,400&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:        #f7f6f2;
@@ -273,6 +273,71 @@
   .about-body { color: var(--text-sub); }
   .about-body p + p { margin-top: 1.2rem; }
   .about-body strong { color: var(--text); font-weight: 500; }
+
+  /* ── COVER PAGE ── */
+  .cover-page {
+    min-height: calc(100vh - 60px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 4rem 1.5rem;
+  }
+  .cover-inner {
+    max-width: var(--max); width: 100%;
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+  }
+  .cover-label {
+    font-size: 0.78rem; letter-spacing: 0.2em; color: var(--text-muted);
+    margin-bottom: 1rem; text-transform: uppercase;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 20vw, 13rem);
+    font-weight: 300; line-height: 0.9;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+  }
+  .cover-sub {
+    font-size: 0.9rem; color: var(--text-muted);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+  .cover-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.8rem 1.6rem;
+    background: var(--accent); color: #fff;
+    font-size: 0.88rem; font-weight: 500;
+    text-decoration: none; border-radius: var(--radius);
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 4rem;
+  }
+  .cover-cta:hover { background: #145730; transform: translateX(3px); }
+  .cover-nav {
+    display: flex; flex-wrap: wrap; gap: 1px;
+    background: var(--border);
+    border: var(--line); border-radius: var(--radius);
+    overflow: hidden; width: 100%;
+  }
+  .cover-nav-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 1rem 1.4rem; background: var(--bg2);
+    text-decoration: none; flex: 1; min-width: 140px;
+    transition: background 0.2s;
+  }
+  .cover-nav-item:hover { background: var(--accent-lt); }
+  .cover-nav-num {
+    font-family: var(--display); font-size: 1.1rem; font-weight: 800;
+    color: var(--border);
+  }
+  .cover-nav-label {
+    font-size: 0.82rem; color: var(--text-sub);
+    letter-spacing: 0.05em;
+  }
+  .cover-nav-item:hover .cover-nav-label { color: var(--accent); }
+  @media (max-width: 768px) {
+    .cover-nav-item { min-width: 120px; padding: 0.9rem 1rem; }
+    .cover-nav-label { font-size: 0.75rem; }
+  }
 
   /* BACK TO TOP */
   .back-to-top {
@@ -656,42 +721,45 @@
 
 <!-- MAIN -->
 <main>
-<!-- HERO -->
-<div id="top">
-  <div class="wrap">
-    <section class="hero" aria-labelledby="hero-name">
-      <h1 class="hero-name" id="hero-name">田中 純大</h1>
-      <p class="hero-name-ja">
-        Tanaka Jundai<span class="hero-name-ja-sep">｜</span><span class="hero-name-ja-sub">1999年生まれ、福島県出身</span>
-      </p>
-      <p class="hero-desc">
-        幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点。製造業での品質管理を経てクリエイティブ分野へ転身し、現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
-      </p>
+<div id="top" class="cover-page">
+  <div class="cover-inner">
 
-      <!-- キャリアビジョン -->
-      <div class="hero-vision" role="note" aria-label="キャリアビジョン">
-        <p class="hero-vision-label">私について</p>
-        <p class="hero-vision-text">
-          デザイナーとしての制作経験と、前職で培った<strong>プロセス管理・品質安定化の思考</strong>を土台に、
-          UX／UI視点を持ちながら<strong>プロジェクト全体をディレクションできる人材</strong>へのステップアップを目指しています。
-          「作って終わり」ではなく、データと対話しながら継続的に改善し、
-          ビジネス目標に直結するクリエイティブを生み出すことが目標です。
-        </p>
-      </div>
+    <!-- 大きなPORTFOLIOタイトル -->
+    <p class="cover-label">田中 純大 / Tanaka Jundai</p>
+    <h1 class="cover-title">PORT<br>FOLIO</h1>
 
-      <div class="hero-chips" role="list" aria-label="使用ツール・AI">
-        <span class="chip hi" role="listitem">Photoshop</span>
-        <span class="chip hi" role="listitem">After Effects</span>
-        <span class="chip hi" role="listitem">Premiere Pro</span>
-        <span class="chip hi" role="listitem">Live2D</span>
-        <span class="chip ai" role="listitem">Claude Code</span>
-        <span class="chip ai" role="listitem">Gemini</span>
-      </div>
-    </section>
+    <!-- プロフィールへのリンク -->
+    <a href="profile.html" class="cover-cta">
+      プロフィールはこちら
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+
+    <!-- ページ一覧 -->
+    <nav class="cover-nav" aria-label="ページ一覧">
+      <a href="profile.html" class="cover-nav-item">
+        <span class="cover-nav-num">01</span>
+        <span class="cover-nav-label">Profile</span>
+      </a>
+      <a href="approach.html" class="cover-nav-item">
+        <span class="cover-nav-num">02</span>
+        <span class="cover-nav-label">Approach</span>
+      </a>
+      <a href="movie.html" class="cover-nav-item">
+        <span class="cover-nav-num">03</span>
+        <span class="cover-nav-label">Movie</span>
+      </a>
+      <a href="banner.html" class="cover-nav-item">
+        <span class="cover-nav-num">04</span>
+        <span class="cover-nav-label">Web Banner</span>
+      </a>
+      <a href="vision.html" class="cover-nav-item">
+        <span class="cover-nav-num">05</span>
+        <span class="cover-nav-label">Vision</span>
+      </a>
+    </nav>
+
   </div>
 </div>
-
-
 </main>
 <!-- トップへ戻るボタン -->
 <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
