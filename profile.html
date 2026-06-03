@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile | 田中純大 Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Syne:wght@700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #f7f6f2;
+    --bg2:       #ffffff;
+    --bg3:       #efefeb;
+    --border:    #dddbd4;
+    --text:      #111110;
+    --text-sub:  #3a3a36;
+    --text-muted:#636360;
+    --accent:    #1a6b3c;
+    --accent-lt: #e8f4ed;
+    --accent2:   #b45309;
+    --accent2-lt:#fef3e2;
+    --line:      1px solid var(--border);
+    --radius:    6px;
+    --max:       840px;
+    --sans:      'Noto Sans JP', sans-serif;
+    --display:   'Syne', sans-serif;
+    --serif:     'Lora', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* PCでは確実にハンバーガーを非表示・ナビを表示 */
+  @media (min-width: 769px) {
+    .hamburger { display: none !important; }
+    .mobile-menu { display: none !important; }
+    .nav-links { display: flex !important; }
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,246,242,0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--line);
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; padding: 0 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 54px;
+  }
+  .nav-logo {
+    font-family: var(--display); font-size: 1rem; font-weight: 800;
+    color: var(--text); text-decoration: none; letter-spacing: 0.04em;
+  }
+  /* HAMBURGER MENU */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none;
+    cursor: pointer; padding: 4px;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* モバイルメニュー */
+  .mobile-menu {
+    display: block;
+    position: fixed;
+    top: 60px; right: 0;
+    width: 220px;
+    background: var(--bg2);
+    border-left: var(--line);
+    border-bottom: var(--line);
+    border-radius: 0 0 0 var(--radius);
+    box-shadow: -4px 4px 20px rgba(0,0,0,0.08);
+    z-index: 150;
+    padding: 0.5rem 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-menu a {
+    display: block; padding: 1rem 1.5rem;
+    font-size: 0.93rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-sub); text-decoration: none;
+    border-bottom: var(--line); transition: background 0.2s, color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { background: var(--accent-lt); color: var(--accent); }
+
+  /* PCナビ：モバイルでは非表示 */
+  .nav-links {
+    display: none;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* NAV サイズ */
+  .nav-inner { height: 60px; }
+  .nav-logo { font-size: 1.05rem; }
+
+  /* PC（769px以上）：ナビ表示、ハンバーガー非表示 */
+  @media (min-width: 769px) {
+    .hamburger { display: none; }
+    .mobile-menu { display: none !important; }
+    .nav-links { display: flex; gap: 1.8rem; }
+  }
+  .mobile-menu a { font-size: 0.92rem; padding: 1rem 1.5rem; }
+
+  /* HERO */
+  .hero { padding: 5rem 0 4rem; border-bottom: var(--line); }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent-lt); color: var(--accent);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.35rem 0.9rem;
+    border-radius: 100px; margin-bottom: 2rem;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.45rem; }
+  .hero-name {
+    font-family: var(--display); font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 800; line-height: 1; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 0.3rem;
+  }
+  .hero-name-ja {
+    font-size: 1rem; font-weight: 400; color: var(--text-muted);
+    letter-spacing: 0.25em; margin-bottom: 2rem;
+  }
+  .hero-name-ja-sep { margin: 0 0.2em; }
+  .hero-name-ja-sub { display: inline; }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--text-sub); max-width: 540px;
+    line-height: 2; margin-bottom: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 3rem 0 3rem; }
+    .hero-name-ja { letter-spacing: 0.08em; line-height: 1.8; }
+    .hero-name-ja-sep { display: none; }
+    .hero-name-ja-sub { display: block; font-size: 0.9rem; margin-top: 0.15rem; letter-spacing: 0.05em; }
+    .hero-desc { font-size: 0.97rem; }
+  }
+  .hero-desc strong { color: var(--text); font-weight: 500; }
+
+  /* ── VISION BOX ── */
+  .hero-vision {
+    background: var(--bg2); border: var(--line); border-left: 3px solid var(--accent);
+    border-radius: var(--radius); padding: 1.2rem 1.5rem;
+    max-width: 540px; margin-bottom: 2rem;
+  }
+  .hero-vision-label {
+    font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 0.4rem;
+  }
+  .hero-vision-text {
+    font-size: 0.93rem; color: var(--text-sub); line-height: 1.85;
+  }
+  .hero-vision-text strong { color: var(--text); font-weight: 500; }
+
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    font-size: 0.85rem; padding: 0.3rem 0.8rem; border-radius: 100px;
+    border: var(--line); color: var(--text-sub); background: var(--bg2);
+  }
+  .chip.hi {
+    background: var(--accent-lt); border-color: var(--accent);
+    color: var(--accent); font-weight: 500;
+  }
+  .chip.ai {
+    background: var(--accent2-lt);
+    border-color: var(--accent2);
+    color: var(--accent2);
+    font-weight: 500;
+  }
+
+  /* SECTION */
+  .sec { padding: 4rem 0; border-bottom: var(--line); }
+  .sec-label {
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .sec-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  .sec-title {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3.8vw, 2.3rem);
+    font-weight: 400; line-height: 1.4; color: var(--text); margin-bottom: 2rem;
+    text-wrap: pretty;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 768px) {
+    .sec-title { font-size: 1.35rem; line-height: 1.55; }
+  }
+
+  /* 日本語テキスト共通設定 */
+  p, li, td, .work-desc, .about-body, .strength-body,
+  .philosophy-body, .vision-cell-text, .banner-caption,
+  .hero-desc, .hero-vision-text {
+    overflow-wrap: break-word;
+    line-break: strict;
+    word-break: auto-phrase;
+  }
+
+  /* PC：1行あたりの文字数を適切に制限 */
+  .about-body p,
+  .work-desc,
+  .strength-body,
+  .philosophy-body p,
+  .vision-cell-text {
+    max-width: 52em;
+  }
+
+  /* スマホ：余白を確保して行長を短くする */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 1.2rem; }
+    .about-body p,
+    .work-desc,
+    .strength-body,
+    .philosophy-body p,
+    .vision-cell-text,
+    .hero-desc,
+    .hero-vision-text {
+      max-width: 100%;
+      font-size: 0.97rem;
+      line-height: 2;
+    }
+    .work-body { padding: 1.2rem; }
+    .strength-cell { padding: 1.4rem; }
+    .banner-caption { font-size: 0.82rem; line-height: 1.7; }
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 3fr 2fr;
+    gap: 3rem; align-items: start;
+  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .about-body { color: var(--text-sub); }
+  .about-body p + p { margin-top: 1.2rem; }
+  .about-body strong { color: var(--text); font-weight: 500; }
+
+  /* BACK TO TOP */
+  .back-to-top {
+    position: fixed;
+    bottom: 1.8rem; right: 1.8rem;
+    width: 46px; height: 46px;
+    background: var(--accent);
+    border: none; border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(26,107,60,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: #145730; }
+  .back-to-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* CAREER TIMELINE */
+  .career-timeline {
+    display: flex; flex-direction: column;
+    position: relative; padding-left: 1.4rem;
+  }
+  .career-timeline::before {
+    content: ''; position: absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 1px; background: var(--border);
+  }
+  .ct-item {
+    display: flex; gap: 0.8rem; align-items: flex-start;
+    position: relative; padding-bottom: 1.3rem;
+  }
+  .ct-item:last-child { padding-bottom: 0; }
+  .ct-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--bg2); border: 2px solid var(--border);
+    flex-shrink: 0; margin-top: 0.25rem;
+    position: absolute; left: -1.4rem;
+  }
+  .ct-dot-now { border-color: var(--accent); background: var(--accent); }
+  .ct-content { display: flex; flex-direction: column; gap: 0.15rem; }
+  .ct-year { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em; }
+  .ct-text { font-size: 0.8rem; color: var(--text-sub); line-height: 1.6; }
+
+  .skill-block { display: flex; flex-direction: column; gap: 1.3rem; }
+  .skill-head {
+    display: flex; justify-content: space-between;
+    font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--text-sub);
+  }
+  .skill-head span:last-child { color: var(--text-muted); font-size: 0.7rem; }
+  .skill-track { height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent), #2d9e5e);
+    border-radius: 3px;
+  }
+
+  /* EXPERIENCE TABLE — 担当範囲の明示 */
+  .exp-table {
+    width: 100%; border-collapse: collapse; font-size: 0.93rem;
+    margin-top: 1.5rem;
+  }
+  .exp-table th {
+    text-align: left; font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-muted); font-weight: 400;
+    padding: 0 0.8rem 0.6rem; border-bottom: var(--line);
+  }
+  .exp-table th:first-child { padding-left: 0; }
+  .exp-table td {
+    padding: 0.7rem 0.8rem; border-bottom: var(--line);
+    vertical-align: top; color: var(--text-sub); line-height: 1.7;
+  }
+  .exp-table td:first-child { padding-left: 0; color: var(--text); font-weight: 500; white-space: nowrap; }
+  .exp-table tr:last-child td { border-bottom: none; }
+
+  /* STRENGTH CARDS */
+  .strength-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--border);
+    border: var(--line); border-radius: var(--radius); overflow: hidden;
+  }
+  @media (max-width: 768px) { .strength-grid { grid-template-columns: 1fr; } }
+  .strength-cell { background: var(--bg2); padding: 1.8rem; }
+  .strength-num {
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--border); line-height: 1; margin-bottom: 0.7rem;
+  }
+  .strength-title { font-size: 0.93rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
+  .strength-body { font-size: 0.93rem; color: var(--text-sub); line-height: 1.85; }
+  .strength-body strong { color: var(--text); font-weight: 500; }
+
+  /* WORK CARDS */
+  .works-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+  .work-card {
+    background: var(--bg2); border: var(--line); border-radius: var(--radius);
+    overflow: hidden; transition: box-shadow 0.25s, border-color 0.25s;
+  }
+  .work-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(26,107,60,0.07); }
+  .work-inner { display: grid; grid-template-columns: 180px 1fr; }
+  @media (max-width: 768px) { .work-inner { grid-template-columns: 1fr; } }
+  .work-thumb {
+    background: var(--bg3); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.4rem;
+    padding: 1.5rem; border-right: var(--line); min-height: 160px;
+  }
+  @media (max-width: 768px) { .work-thumb { border-right: none; border-bottom: var(--line); min-height: 90px; } }
+  .work-thumb-icon { font-size: 1.6rem; }
+  .work-thumb-label { font-size: 0.62rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; }
+  .work-body { padding: 1.6rem; }
+  .work-cat {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent2); font-weight: 500; margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+  .work-cat .work-date {
+    display: inline;
+    font-weight: 300; letter-spacing: 0;
+    text-transform: none;
+  }
+  @media (max-width: 768px) {
+    .work-cat .work-date { display: block; font-size: 0.82rem; margin-top: 0.1rem; }
+  }
+  .work-title {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+    margin-bottom: 0.6rem; line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .work-desc { font-size: 0.9rem; color: var(--text-sub); line-height: 1.85; margin-bottom: 1rem; }
+  .work-desc strong { color: var(--text); font-weight: 500; }
+
+  /* ── 担当範囲バッジ ── */
+  .work-scope {
+    background: var(--bg3); border: var(--line); border-radius: 4px;
+    padding: 0.7rem 1rem; margin-bottom: 1rem;
+    font-size: 0.85rem; color: var(--text-sub);
+  }
+  .work-scope-label {
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); display: block; margin-bottom: 0.3rem;
+  }
+  .scope-row { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .scope-tag {
+    font-size: 0.8rem; padding: 0.15rem 0.55rem;
+    background: var(--bg2); border: var(--line); border-radius: 3px;
+    color: var(--text-sub);
+  }
+  .scope-tag.mine {
+    background: var(--accent-lt); border-color: var(--accent);
+    color: var(--accent); font-weight: 500;
+  }
+
+  .work-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
+  .work-tag { font-size: 0.85rem; padding: 0.2rem 0.6rem; border: var(--line); color: var(--text-muted); border-radius: 3px; }
+  .work-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.85rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .work-link:hover { text-decoration: underline; }
+  .work-link::after { content: '↗'; font-size: 0.8rem; }
+
+  /* BANNER */
+  .banner-intro { font-size: 0.93rem; color: var(--text-sub); line-height: 1.85; margin-bottom: 2rem; max-width: 100%; }
+  .banner-intro strong { color: var(--text); font-weight: 500; }
+  .banner-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem; margin-bottom: 1.5rem;
+  }
+  @media (max-width: 768px) { .banner-grid { grid-template-columns: 1fr; } }
+  .banner-card {
+    background: var(--bg2); border: var(--line); border-radius: var(--radius);
+    overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .banner-card:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(26,107,60,0.08); }
+  .banner-thumb {
+    aspect-ratio: 5/4; background: var(--bg3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; color: var(--text-muted);
+  }
+  .banner-caption { padding: 0.6rem 0.7rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; border-top: var(--line); }
+  .banner-caption strong { display: block; color: var(--text-sub); font-size: 0.85rem; margin-bottom: 0.1rem; }
+
+  /* 制作プロセス：正円モチーフ */
+  .process-circle-wrap {
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    background: var(--bg2);
+    border: var(--line);
+    border-radius: var(--radius);
+  }
+  .process-box-title {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 500; margin-bottom: 0;
+  }
+  .process-circle-row {
+    display: flex; align-items: flex-start;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: nowrap; overflow-x: auto;
+  }
+  @media (max-width: 768px) {
+    .process-circle-row {
+      flex-direction: column;
+      align-items: stretch;
+      overflow-x: visible;
+      gap: 0;
+    }
+  }
+  .process-circle-item {
+    display: flex; flex-direction: column;
+    align-items: center; flex: 1; min-width: 80px;
+  }
+  @media (max-width: 768px) {
+    .process-circle-item {
+      flex-direction: row;
+      align-items: center;
+      min-width: unset;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: var(--line);
+    }
+    .process-circle-item:last-child { border-bottom: none; }
+  }
+  .process-circle {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--accent-lt); border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .process-circle-last { background: var(--accent); }
+  .process-circle-last .process-circle-num { color: #fff; }
+  .process-circle-num {
+    font-size: 0.8rem; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.05em;
+  }
+  .process-circle-line {
+    width: 1px; height: 10px;
+    background: var(--accent); opacity: 0.3;
+  }
+  @media (max-width: 768px) { .process-circle-line { display: none; } }
+  .process-circle-label {
+    font-size: 0.85rem; color: var(--text-sub);
+    text-align: center; line-height: 1.5; padding: 0 0.2rem;
+  }
+  @media (max-width: 768px) {
+    .process-circle-label { text-align: left; font-size: 0.93rem; }
+  }
+  .process-connector {
+    flex: 1; height: 2px;
+    background: var(--accent); opacity: 0.2;
+    margin-top: 25px; min-width: 10px;
+  }
+  @media (max-width: 768px) {
+    .process-connector { display: none; }
+  }
+  .banner-note {
+    background: var(--accent-lt); border: 1px solid var(--accent);
+    border-radius: var(--radius); padding: 1.2rem 1.4rem;
+    font-size: 0.93rem; color: var(--text-sub); line-height: 1.85;
+  }
+  .banner-note strong { color: var(--accent); font-weight: 500; }
+
+  /* STANCE */
+  .philosophy-quote {
+    font-family: var(--serif); font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+    font-style: italic; color: var(--text-sub); line-height: 1.8;
+    border-left: 3px solid var(--accent); padding-left: 1.5rem; margin: 2rem 0;
+  }
+  .philosophy-body { font-size: 0.93rem; color: var(--text-sub); line-height: 1.9; max-width: 580px; }
+  .philosophy-body p + p { margin-top: 1rem; }
+  .philosophy-body strong { color: var(--text); font-weight: 500; }
+
+  /* VISION SECTION */
+  .vision-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--border);
+    border: var(--line); border-radius: var(--radius); overflow: hidden;
+    margin-top: 2rem;
+  }
+  @media (max-width: 768px) { .vision-grid { grid-template-columns: 1fr !important; } }
+  .vision-cell { background: var(--bg2); padding: 1.5rem; }
+  .vision-cell-label {
+    font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.5rem;
+  }
+  .vision-cell-text { font-size: 0.92rem; color: var(--text-sub); line-height: 1.85; }
+  .vision-cell-text strong { color: var(--text); font-weight: 500; }
+
+  /* NOTION GUIDE */
+  .notion-guide {
+    margin-top: 2.5rem; background: var(--bg2); border: var(--line);
+    border-radius: var(--radius); padding: 1.5rem 1.8rem;
+  }
+  .notion-guide-title {
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 400; margin-bottom: 1.2rem;
+  }
+  .notion-step {
+    display: flex; gap: 1rem; padding: 0.9rem 0;
+    border-bottom: var(--line); font-size: 0.81rem; color: var(--text-sub); line-height: 1.8;
+  }
+  .notion-step:last-child { border-bottom: none; }
+  .notion-step-n { font-family: var(--display); font-size: 1rem; font-weight: 800; color: var(--accent2); min-width: 1.4rem; }
+  .notion-step strong { color: var(--text); font-weight: 500; }
+
+  /* FOOTER */
+  footer { border-top: var(--line); padding: 2rem 0; }
+  .footer-inner {
+    max-width: var(--max); margin: 0 auto; padding: 0 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em;
+  }
+
+  .sp-only { display: none; }
+  @media (max-width: 768px) { .sp-only { display: block; } }
+  #about    { background: var(--bg2); }
+  #why      { background: var(--bg3); }
+  #works    { background: var(--bg2); }
+  #banner   { background: #f0f5f1; }
+  #stance   { background: var(--bg2); }
+
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* バナー画像フェードイン */
+  .banner-img-fade {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .banner-img-fade.visible {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="メインナビゲーション">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">PORTFOLIO</a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="movie.html">Movie</a></li>
+      <li><a href="banner.html">Web Banner</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- モバイルメニュー -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="モバイルメニュー">
+  <a href="profile.html">Profile</a>
+  <a href="about.html">About</a>
+  <a href="movie.html">Movie</a>
+  <a href="banner.html">Web Banner</a>
+</div>
+
+
+<!-- MAIN -->
+<main>
+<div id="top">
+  <div class="wrap">
+    <section class="hero" aria-labelledby="hero-name">
+      <h1 class="hero-name" id="hero-name">田中 純大</h1>
+      <p class="hero-name-ja">
+        Tanaka Jundai<span class="hero-name-ja-sep">｜</span><span class="hero-name-ja-sub">1999年生まれ、福島県出身</span>
+      </p>
+      <p class="hero-desc">
+        幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点。製造業での品質管理を経てクリエイティブ分野へ転身し、現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
+      </p>
+
+      <div class="hero-chips" role="list" aria-label="使用ツール・AI">
+        <span class="chip hi" role="listitem">Photoshop</span>
+        <span class="chip hi" role="listitem">After Effects</span>
+        <span class="chip hi" role="listitem">Premiere Pro</span>
+        <span class="chip hi" role="listitem">Live2D</span>
+        <span class="chip ai" role="listitem">Claude Code</span>
+        <span class="chip ai" role="listitem">Gemini</span>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec" aria-labelledby="about-title">
+  <div class="wrap">
+    <p class="sec-label">01 — Profile</p>
+    <h2 class="sec-title" id="about-title">経歴とスキル</h2>
+
+    <!-- 私について -->
+    <div class="hero-vision" role="note" aria-label="私について" style="margin-bottom:2.5rem">
+      <p class="hero-vision-label">私について</p>
+      <p class="hero-vision-text">
+        デザイナーとしての制作経験と、前職で培った<strong>プロセス管理・品質安定化の思考</strong>を土台に、
+        UX／UI視点を持ちながら<strong>プロジェクト全体をディレクションできる人材</strong>へのステップアップを目指しています。
+        「作って終わり」ではなく、データと対話しながら継続的に改善し、
+        ビジネス目標に直結するクリエイティブを生み出すことが目標です。
+      </p>
+    </div>
+
+
+    <!-- 本文 ＋ スキルバー：2カラム -->
+    <div class="about-grid">
+      <div class="about-body">
+        <p>
+          幼少期から好奇心の赴くまま理想の世界を形にすることに没頭してきた経験が、
+          <strong>ターゲットに刺さる世界観を構築するデザインの礎</strong>になっています。
+        </p>
+        <p>
+          高校卒業後は製造業の品質管理職に従事。工程ごとの品質チェックと<strong>PDCAサイクルによる改善習慣</strong>を身につけました。
+          この「手戻りを出さないプロセス管理の思考」は、現在の制作でのコンセプトアートによる事前すり合わせや、
+          データに基づく改善提案に直接活きています。
+        </p>
+        <p>
+          2022年より業務委託での制作活動をスタートし、現在は広告代理店にて<strong>月100本を超えるバナー制作</strong>を担当。
+          単なる制作にとどまらず、制作フローの効率化や改善提案を自発的に行い、
+          チーム全体のパフォーマンス向上にも寄与してきました。
+        </p>
+        <p>
+          視覚的な強弱を活かしたタイポグラフィと情報の簡略化を強みとし、
+          <strong>限られたスペースで視認性と訴求力を両立させたレイアウト</strong>を
+          迅速に構成することが得意です。
+        </p>
+      </div>
+
+      <div>
+        <div class="skill-block" role="list" aria-label="スキルレベル">
+          <div role="listitem">
+            <div class="skill-head"><span>Photoshop</span><span>約4年 / バナー・SNS広告</span></div>
+            <div class="skill-track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Photoshop 85%">
+              <div class="skill-fill" style="width:85%"></div>
+            </div>
+          </div>
+          <div role="listitem">
+            <div class="skill-head"><span>After Effects</span><span>約1年 / モーショングラフィックス</span></div>
+            <div class="skill-track" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="After Effects 60%">
+              <div class="skill-fill" style="width:60%"></div>
+            </div>
+          </div>
+          <div role="listitem">
+            <div class="skill-head"><span>Premiere Pro</span><span>約1年 / MV・映像編集</span></div>
+            <div class="skill-track" role="progressbar" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100" aria-label="Premiere Pro 58%">
+              <div class="skill-fill" style="width:58%"></div>
+            </div>
+          </div>
+          <div role="listitem">
+            <div class="skill-head"><span>撮影（構図・スマホ）</span><span>自主制作MV</span></div>
+            <div class="skill-track" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" aria-label="撮影 28%">
+              <div class="skill-fill" style="width:28%"></div>
+            </div>
+          </div>
+          <div role="listitem">
+            <div class="skill-head"><span>Live2D</span><span>1案件 / 基本操作</span></div>
+            <div class="skill-track" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Live2D 25%">
+              <div class="skill-fill" style="width:25%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- キャリア年表 -->
+        <div style="margin-top:2rem">
+          <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem">Career Timeline</p>
+          <div class="career-timeline">
+            <div class="ct-item">
+              <div class="ct-dot"></div>
+              <div class="ct-content">
+                <span class="ct-year">〜2021</span>
+                <span class="ct-text">製造業 / 品質管理職<br>PDCAサイクル・工程管理を習得</span>
+              </div>
+            </div>
+            <div class="ct-item">
+              <div class="ct-dot"></div>
+              <div class="ct-content">
+                <span class="ct-year">2022</span>
+                <span class="ct-text">業務委託での制作活動スタート<br>Photoshop・映像制作を独学</span>
+              </div>
+            </div>
+            <div class="ct-item">
+              <div class="ct-dot ct-dot-now"></div>
+              <div class="ct-content">
+                <span class="ct-year" style="color:var(--accent)">現在</span>
+                <span class="ct-text">広告代理店 / WEBデザイナー<br>月100本超のバナー制作を担当</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 経歴サマリ：グリッド下に全幅で表示 -->
+    <table class="exp-table" aria-label="経歴・制作実績サマリ" style="margin-top:2.5rem">
+      <thead>
+        <tr>
+          <th>スキル・経験</th>
+          <th>実績・内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>バナー制作<br><small style="font-weight:300;color:var(--text-muted)">Photoshop 約4年</small></td>
+          <td>広告代理店にて飲食ポータルサイトの広告バナーを担当・月100本超。求人媒体「体入ショコラ」向けサンプルバナーを自主制作・提供（現職）</td>
+        </tr>
+        <tr>
+          <td>映像編集<br><small style="font-weight:300;color:var(--text-muted)">After Effects・Premiere Pro 約1年</small></td>
+          <td>MV 2本・配信演出映像 1本、合計3件</td>
+        </tr>
+        <tr>
+          <td>クライアント対応</td>
+          <td>要望のヒアリング・コンセプトアートによる認識合わせを実践（映像制作案件）</td>
+        </tr>
+        <tr>
+          <td>Live2D</td>
+          <td>基本操作・1案件</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+<!-- トップへ戻るボタン -->
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script>
+  // トップへ戻るボタン
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ハンバーガーメニュー
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  }
+
+  // メニュー内リンク：閉じるだけ（ページ遷移はブラウザに任せる）
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      closeMenu();
+    });
+  });
+        }, 50);
+      }
+    });
+  });
+
+      }
+    });
+  });
+
+  // メニュー外タップで閉じる
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // スクロールアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  // アニメーション対象を自動で登録
+  document.querySelectorAll(
+    '.sec-label, .sec-title, .about-body, .skill-block, .exp-table, ' +
+    '.strength-cell, .work-card, .banner-card, .banner-intro, .process-box, ' +
+    '.banner-note, .philosophy-quote, .philosophy-body, .vision-cell'
+  ).forEach((el, i) => {
+    el.classList.add('reveal');
+    const siblings = Array.from(el.parentElement.children);
+    const idx = siblings.indexOf(el) % 4;
+    if (idx > 0) el.classList.add(`reveal-delay-${idx}`);
+    observer.observe(el);
+  });
+
+  // バナー画像フェードイン（不透明度のみ・遅延あり）
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        const siblings = Array.from(img.closest('.banner-grid').querySelectorAll('.banner-img-fade'));
+        const idx = siblings.indexOf(img);
+        setTimeout(() => img.classList.add('visible'), idx * 80);
+        imgObserver.unobserve(img);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.banner-img-fade').forEach(img => imgObserver.observe(img));
+
+  // ── スクロール進捗バー ──
+  const progressBar = document.createElement('div');
+  progressBar.style.cssText = `
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    z-index: 9999; transition: width 0.1s linear;
+    pointer-events: none;
+  `;
+  document.body.appendChild(progressBar);
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  });
+</script>
+
+</body>
+</html>
