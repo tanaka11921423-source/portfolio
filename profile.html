@@ -143,6 +143,38 @@
   }
   .mobile-menu a { font-size: 0.92rem; padding: 1rem 1.5rem; }
 
+  /* HERO IMAGE LAYOUT */
+  .hero-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+  .hero-text { display: flex; flex-direction: column; }
+  .hero-img-wrap {
+    width: 220px; height: 280px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg3);
+    border: var(--line);
+    flex-shrink: 0;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .hero-top {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+    }
+    .hero-img-wrap {
+      width: 100%; height: 220px;
+      order: -1;
+    }
+  }
+
   /* HERO */
   .hero { padding: 5rem 0 4rem; border-bottom: var(--line); }
   .hero-badge {
@@ -657,21 +689,27 @@
 <div id="top">
   <div class="wrap">
     <section class="hero" aria-labelledby="hero-name">
-      <h1 class="hero-name" id="hero-name">田中 純大</h1>
-      <p class="hero-name-ja">
-        Tanaka Jundai<span class="hero-name-ja-sep">｜</span><span class="hero-name-ja-sub">1999年生まれ、福島県出身</span>
-      </p>
-      <p class="hero-desc">
-        幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点。製造業での品質管理を経てクリエイティブ分野へ転身し、現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
-      </p>
-
-      <div class="hero-chips" role="list" aria-label="使用ツール・AI">
-        <span class="chip hi" role="listitem">Photoshop</span>
-        <span class="chip hi" role="listitem">After Effects</span>
-        <span class="chip hi" role="listitem">Premiere Pro</span>
-        <span class="chip hi" role="listitem">Live2D</span>
-        <span class="chip ai" role="listitem">Claude Code</span>
-        <span class="chip ai" role="listitem">Gemini</span>
+      <div class="hero-top">
+        <div class="hero-text">
+          <h1 class="hero-name" id="hero-name">田中 純大</h1>
+          <p class="hero-name-ja">
+            Tanaka Jundai<span class="hero-name-ja-sep">｜</span><span class="hero-name-ja-sub">1999年生まれ、福島県出身</span>
+          </p>
+          <p class="hero-desc">
+            幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点。製造業での品質管理を経てクリエイティブ分野へ転身し、現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
+          </p>
+          <div class="hero-chips" role="list" aria-label="使用ツール・AI">
+            <span class="chip hi" role="listitem">Photoshop</span>
+            <span class="chip hi" role="listitem">After Effects</span>
+            <span class="chip hi" role="listitem">Premiere Pro</span>
+            <span class="chip hi" role="listitem">Live2D</span>
+            <span class="chip ai" role="listitem">Claude Code</span>
+            <span class="chip ai" role="listitem">Gemini</span>
+          </div>
+        </div>
+        <div class="hero-img-wrap">
+          <img src="hero.jpg" alt="田中純大" class="hero-img" onerror="this.parentElement.style.background='var(--bg3)'">
+        </div>
       </div>
     </section>
   </div>
