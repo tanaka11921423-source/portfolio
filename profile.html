@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profile | 田中純大 Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Syne:wght@700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Shippori+Mincho+B1:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:        #f7f6f2;
@@ -22,8 +22,8 @@
     --radius:    6px;
     --max:       840px;
     --sans:      'Noto Sans JP', sans-serif;
-    --display:   'Syne', sans-serif;
-    --serif:     'Lora', serif;
+    --display:   'Cormorant Garamond', serif;
+    --serif:     'Cormorant Garamond', serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -189,13 +189,15 @@
   }
   .hero-badge::before { content: '●'; font-size: 0.45rem; }
   .hero-name {
-    font-family: var(--display); font-size: clamp(3rem, 10vw, 6rem);
-    font-weight: 800; line-height: 1; letter-spacing: -0.01em;
-    color: var(--text); margin-bottom: 0.3rem;
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400; line-height: 1; letter-spacing: 0.12em;
+    color: var(--text); margin-bottom: 0.2rem;
+    margin-left: -0.06em;
   }
   .hero-name-ja {
-    font-size: 1rem; font-weight: 400; color: var(--text-muted);
-    letter-spacing: 0.25em; margin-bottom: 2rem;
+    font-size: 0.88rem; font-weight: 400; color: var(--text-muted);
+    letter-spacing: 0.04em; margin-bottom: 1.8rem; margin-left: -0.06em;
   }
   .hero-name-ja-sep { margin: 0 0.2em; }
   .hero-name-ja-sub { display: inline; }
@@ -696,7 +698,7 @@
         <div class="hero-text">
           <h1 class="hero-name" id="hero-name">田中 純大</h1>
           <p class="hero-name-ja">
-            Tanaka Jundai<span class="hero-name-ja-sep">｜</span><span class="hero-name-ja-sub">1999年生まれ、福島県出身</span>
+            Tanaka Jundai<span class="hero-name-ja-sep"> | </span><span class="hero-name-ja-sub">1999年生まれ、福島県出身</span>
           </p>
           <p class="hero-desc">
             幼少期よりアニメ・ゲーム・工作に熱中し、<strong>理想の世界を形にすることへの没頭</strong>がデザインの原点。製造業での品質管理を経てクリエイティブ分野へ転身し、現在は広告代理店にて<strong>月100本超のバナー制作</strong>を担当するWEBデザイナーです。
@@ -711,7 +713,7 @@
           </div>
         </div>
         <div class="hero-img-wrap">
-          <img src="hero.jpg" alt="田中純大" class="hero-img" onerror="this.parentElement.style.background='var(--bg3)'">
+          <img src="hero.jpg" alt="田中純大" class="hero-img" onerror="this.style.display='none'">
         </div>
       </div>
     </section>
