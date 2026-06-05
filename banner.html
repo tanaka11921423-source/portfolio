@@ -789,70 +789,55 @@
 <script>
   // トップへ戻るボタン
   const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      backToTop.classList.add('show');
-    } else {
-      backToTop.classList.remove('show');
-    }
-  });
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 400);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // ハンバーガーメニュー
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', isOpen);
-  });
-
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', false);
-  }
-
-  // メニュー内リンク：閉じるだけ（ページ遷移はブラウザに任せる）
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      closeMenu();
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
     });
-  });
-        }, 50);
-      }
-    });
-  });
 
-      }
-    });
-  });
-
-  // メニュー外タップで閉じる
-  document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-      closeMenu();
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
     }
-  });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu());
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMenu();
+      }
+    });
+  }
 
   // スクロールアニメーション
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.12 });
 
-  // アニメーション対象を自動で登録
   document.querySelectorAll(
     '.sec-label, .sec-title, .about-body, .skill-block, .exp-table, ' +
-    '.strength-cell, .work-card, .banner-card, .banner-intro, .process-box, ' +
-    '.banner-note, .philosophy-quote, .philosophy-body, .vision-cell'
-  ).forEach((el, i) => {
+    '.strength-cell, .work-card, .banner-card, .banner-intro, ' +
+    '.banner-note, .philosophy-quote, .philosophy-body, .vision-cell, .ct-item'
+  ).forEach((el) => {
     el.classList.add('reveal');
     const siblings = Array.from(el.parentElement.children);
     const idx = siblings.indexOf(el) % 4;
@@ -860,36 +845,17 @@
     observer.observe(el);
   });
 
-  // バナー画像フェードイン（不透明度のみ・遅延あり）
-  const imgObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        const siblings = Array.from(img.closest('.banner-grid').querySelectorAll('.banner-img-fade'));
-        const idx = siblings.indexOf(img);
-        setTimeout(() => img.classList.add('visible'), idx * 80);
-        imgObserver.unobserve(img);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.banner-img-fade').forEach(img => imgObserver.observe(img));
-
-  // ── スクロール進捗バー ──
+  // スクロール進捗バー
   const progressBar = document.createElement('div');
   progressBar.style.cssText = `
     position: fixed; top: 0; left: 0; height: 3px; width: 0%;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
-    z-index: 9999; transition: width 0.1s linear;
-    pointer-events: none;
+    z-index: 9999; transition: width 0.1s linear; pointer-events: none;
   `;
   document.body.appendChild(progressBar);
-
   window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
+    const p = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    progressBar.style.width = (p || 0) + '%';
   });
 </script>
 
