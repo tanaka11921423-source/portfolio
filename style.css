@@ -382,3 +382,16 @@ a:focus-visible, button:focus-visible {
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* ── モバイル用:現在ページ名ラベル ──────────── */
+.nav-here {
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 500;
+  background: var(--accent-lt);
+  padding: 0.15rem 0.7rem; border-radius: 100px;
+  margin-right: auto; margin-left: 0.9rem;
+}
+@media (min-width: 769px) {
+  .nav-here { display: none; }
+  .nav-links { gap: 1.4rem; }
+}
