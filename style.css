@@ -194,7 +194,7 @@ nav.site-nav {
 
 /* ── WORKS カード ────────────────────────────── */
 .work-cards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-@media (min-width: 640px) { .work-cards { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) { .work-cards { grid-template-columns: repeat(2, 1fr); } }
 .work-card {
   display: block; text-decoration: none; color: inherit;
   background: var(--bg2); border: var(--line); border-radius: var(--radius);
@@ -393,5 +393,5 @@ a:focus-visible, button:focus-visible {
 }
 @media (min-width: 769px) {
   .nav-here { display: none; }
-  .nav-links { gap: 1.4rem; }
+  .nav-links { gap: 1.15rem; }
 }

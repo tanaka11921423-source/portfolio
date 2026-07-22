@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Site | 田中純大 Portfolio</title>
+<meta name="description" content="WEBデザイナー田中純大のWebサイト制作実績。情報設計からWordPress構築まで一人称で担当した制作事例。">
+<meta property="og:title" content="Web Site | 田中純大 Portfolio">
+<meta property="og:description" content="情報設計からWordPress構築まで担当したWebサイト制作実績。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tanaka11921423-source.github.io/portfolio/website.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav" aria-label="メインナビゲーション">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">PORTFOLIO</a>
+    <span class="nav-here" aria-hidden="true">Web Site</span>
+    <ul class="nav-links">
+      <li><a href="works.html">Works</a></li>
+      <li><a href="banner.html">Web Banner</a></li>
+      <li><a href="website.html" aria-current="page">Web Site</a></li>
+      <li><a href="movie.html">Movie</a></li>
+      <li><a href="document.html">Document</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="モバイルメニュー">
+  <a href="works.html">Works</a>
+  <a href="banner.html">Web Banner</a>
+  <a href="website.html" aria-current="page">Web Site</a>
+  <a href="movie.html">Movie</a>
+  <a href="document.html">Document</a>
+  <a href="profile.html">Profile</a>
+</div>
+
+<main>
+<section id="website" class="sec" aria-labelledby="website-title">
+  <div class="wrap">
+    <p class="sec-label fade-in">Works 02 — Web Site</p>
+    <h2 class="sec-title fade-in" id="website-title">リラクゼーションサロン 公式サイト構築</h2>
+
+    <p class="sec-lead fade-in">
+      サロンの公式サイトを、<strong>要件調査・情報設計・デザイン・WordPress構築まで一人称で担当</strong>して制作しました。
+      未経験だったWordPress構築は、生成AI(Claude Code)を実装パートナーとして活用しながら、
+      設計判断と検証を自身で行うことで完成させています。
+    </p>
+
+    <div class="chips fade-in" style="margin-bottom:2.5rem">
+      <span class="chip hi">WordPress</span>
+      <span class="chip hi">Claude Code</span>
+      <span class="chip hi">Photoshop</span>
+      <span class="chip">情報設計</span>
+      <span class="chip">テーマ開発</span>
+      <span class="chip">レスポンシブ対応</span>
+    </div>
+
+    <!-- TODO: サイトのスクリーンショットに差し替え
+         おすすめの3枚: ①トップ(ファーストビュー〜割引バナー) ②料金システム ③スマホ表示(予約導線)
+         <img src="website-top.png" alt="サイトのトップページ" loading="lazy" decoding="async"> -->
+    <div class="work-grid" style="margin-bottom:2.5rem">
+      <figure class="work-item fade-in">
+        <div class="ph" style="aspect-ratio:16/10;">スクリーンショット【差し替え】<br>トップページ</div>
+        <figcaption class="work-item-body">
+          <p class="work-item-title">トップページ</p>
+          <p class="work-item-desc">ファーストビュー直下に新規割・新人割・前日割の訴求バナーを配置し、初回来店の後押しを最優先に設計。</p>
+        </figcaption>
+      </figure>
+      <figure class="work-item fade-in">
+        <div class="ph" style="aspect-ratio:16/10;">スクリーンショット【差し替え】<br>スマホ表示・予約導線</div>
+        <figcaption class="work-item-body">
+          <p class="work-item-title">予約導線(モバイル)</p>
+          <p class="work-item-desc">深夜営業(〜翌5時)の業態に合わせ、電話・LINEの2系統の予約ボタンを全ページ下部に固定表示。</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="note-box fade-in">
+      <p class="note-box-label">設計のポイント</p>
+      <p class="note-box-text">
+        業界の商習慣を調査した上で、<strong>更新頻度の高い「出勤情報」「スタッフ紹介」をCMS化</strong>し、
+        制作者がいなくても店舗側で日々更新できる運用設計にしました。
+        集客チャネルを踏まえて外国人のお客様向けページも用意し、
+        「作って納品して終わり」ではなく<strong>公開後に運用が回ること</strong>をゴールに設計しています。
+      </p>
+    </div>
+
+    <div class="note-box fade-in">
+      <p class="note-box-label">AIの活用について</p>
+      <p class="note-box-text">
+        WordPressのテーマ開発は本案件が初挑戦でした。実装はClaude Codeとの対話で進め、
+        <strong>要件定義・情報設計・デザイン判断・動作検証は自身で担当</strong>。
+        「AIに作らせる」のではなく「AIと組んで、自分の作れる領域を広げる」進め方を実践した案件です。
+      </p>
+    </div>
+
+    <!-- TODO: 公開URLを載せる場合はコメントを外す(モック内のダミーデータ整備後に)
+    <p class="fade-in"><a class="cover-cta" href="https://amana.moe/" target="_blank" rel="noopener">サイトを見る</a></p>
+    -->
+  </div>
+</section>
+</main>
+
+<nav class="page-nav" aria-label="ページ送り">
+  <a href="banner.html" class="prev">
+    <span class="page-nav-label">← Prev</span>
+    <span class="page-nav-title">Web Banner</span>
+  </a>
+  <a href="movie.html" class="next">
+    <span class="page-nav-label">Next →</span>
+    <span class="page-nav-title">Movie</span>
+  </a>
+</nav>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-contact-label">Contact</p>
+    <p class="footer-contact">お問い合わせ:<a href="mailto:dummy@example.com">dummy@example.com</a>【ダミー】</p>
+    <div class="footer-links">
+      <a href="works.html">Works</a>
+      <a href="banner.html">Web Banner</a>
+      <a href="website.html">Web Site</a>
+      <a href="movie.html">Movie</a>
+      <a href="document.html">Document</a>
+      <a href="profile.html">Profile</a>
+    </div>
+    <p class="footer-copy">© 2026 Tanaka Jundai</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+<script src="script.js"></script>
+</body>
+</html>
