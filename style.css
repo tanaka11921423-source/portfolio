@@ -395,3 +395,108 @@ a:focus-visible, button:focus-visible {
   .nav-here { display: none; }
   .nav-links { gap: 1.15rem; }
 }
+
+/* ============================================================
+   v3 レイアウト整理(参考:QANDO)
+   ─ 余白を広く / 見出しを大きく / 説明を短く / タグで担当領域
+   ============================================================ */
+
+/* ── セクション余白を拡大 ── */
+.sec-lg { padding: 6rem 0; border-bottom: var(--line); }
+.sec-lg:last-of-type { border-bottom: none; }
+@media (min-width: 769px) { .sec-lg { padding: 8.5rem 0; } }
+
+/* ── 大見出し(セクションタイトル) ── */
+.title-xl {
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  font-weight: 600; line-height: 1; letter-spacing: 0.01em;
+  margin-bottom: 0.6rem;
+}
+.title-xl-ja {
+  font-size: 0.85rem; letter-spacing: 0.2em;
+  color: var(--text-muted); margin-bottom: 3rem;
+}
+
+/* ── ヒーロー(トップ) ── */
+.hero {
+  min-height: calc(100svh - 60px);
+  display: flex; align-items: center;
+  padding: 5rem 0;
+}
+.hero-copy {
+  font-size: clamp(2.1rem, 7.5vw, 4.6rem);
+  font-weight: 700; line-height: 1.35; letter-spacing: -0.01em;
+  margin-bottom: 1.8rem;
+}
+.hero-copy em {
+  font-style: normal; color: var(--accent);
+}
+.hero-sub {
+  font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+  color: var(--text-sub); line-height: 2; max-width: 32em;
+  margin-bottom: 3rem;
+}
+.hero-name {
+  font-family: var(--display);
+  font-size: 1rem; letter-spacing: 0.18em;
+  color: var(--text-muted); margin-bottom: 2rem;
+}
+.scroll-cue {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none;
+}
+.scroll-cue::after {
+  content: ''; width: 46px; height: 1px; background: var(--text-muted);
+  animation: cue 2s ease-in-out infinite;
+}
+@keyframes cue { 0%,100% { transform: scaleX(1); transform-origin: left; } 50% { transform: scaleX(0.4); transform-origin: left; } }
+
+/* ── 実績リスト(タグつき・1件1行) ── */
+.work-list { display: grid; gap: 2.5rem; }
+@media (min-width: 700px) { .work-list { grid-template-columns: repeat(2, 1fr); gap: 3.5rem 2.5rem; } }
+.work-entry { display: block; text-decoration: none; color: inherit; }
+.work-entry-thumb {
+  aspect-ratio: 4 / 3; background: var(--bg3);
+  border-radius: var(--radius); overflow: hidden; margin-bottom: 1.1rem;
+  transition: opacity 0.3s;
+}
+.work-entry:hover .work-entry-thumb { opacity: 0.82; }
+.work-entry-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.work-entry-title {
+  font-size: 1.15rem; font-weight: 700; line-height: 1.6;
+  margin-bottom: 0.5rem; transition: color 0.2s;
+}
+.work-entry:hover .work-entry-title { color: var(--accent); }
+.work-tags {
+  display: flex; flex-wrap: wrap; gap: 0.45rem 0.9rem;
+  font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.06em;
+}
+.work-tags span::before { content: '＊ '; color: var(--accent); }
+
+/* ── できること(Service風) ── */
+.service-list { display: grid; gap: 2.5rem; }
+@media (min-width: 700px) { .service-list { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
+.service-item { border-top: 2px solid var(--text); padding-top: 1.2rem; }
+.service-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.7rem; }
+.service-text { font-size: 0.9rem; color: var(--text-sub); line-height: 1.95; }
+
+/* ── テキストリンク(View more) ── */
+.more-link {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  margin-top: 2.5rem;
+  font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text); text-decoration: none;
+  border-bottom: 1px solid var(--text); padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s, gap 0.2s;
+}
+.more-link::after { content: '→'; }
+.more-link:hover { color: var(--accent); border-color: var(--accent); gap: 0.9rem; }
+
+/* ── Contact 大ブロック ── */
+.contact-block { text-align: left; }
+.contact-copy {
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-weight: 700; line-height: 1.7; margin-bottom: 2rem;
+}

@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>田中純大 | WEBデザイナー Portfolio</title>
-<meta name="description" content="WEBデザイナー田中純大のポートフォリオ。バナー・映像・提案資料まで、意図を語れるデザインの実績を掲載しています。">
+<meta name="description" content="WEBデザイナー田中純大のポートフォリオ。バナー・Webサイト・映像・提案資料まで、課題の発見から改善提案までを担うデザインの実績を掲載しています。">
 <meta property="og:title" content="田中純大 | WEBデザイナー Portfolio">
-<meta property="og:description" content="意図を語り、提案できるWEBデザイナー田中純大の制作実績。">
+<meta property="og:description" content="つくって、終わりにしない。課題の発見から制作、改善提案まで担うWEBデザイナーの実績。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tanaka11921423-source.github.io/portfolio/">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -19,8 +19,7 @@
     <a class="nav-logo" href="index.html">PORTFOLIO</a>
     <ul class="nav-links">
       <li><a href="works.html">Works</a></li>
-      <li><a href="banner.html">Web Banner</a>
-      <a href="website.html">Web Site</a></li>
+      <li><a href="banner.html">Web Banner</a></li>
       <li><a href="website.html">Web Site</a></li>
       <li><a href="movie.html">Movie</a></li>
       <li><a href="document.html">Document</a></li>
@@ -34,7 +33,6 @@
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="モバイルメニュー">
   <a href="works.html">Works</a>
   <a href="banner.html">Web Banner</a>
-      <a href="website.html">Web Site</a>
   <a href="website.html">Web Site</a>
   <a href="movie.html">Movie</a>
   <a href="document.html">Document</a>
@@ -42,36 +40,126 @@
 </div>
 
 <main>
-<div class="cover-page">
-  <div class="cover-inner">
-    <p class="cover-label fade-in">田中 純大 / Tanaka Jundai — WEB Designer</p>
-    <h1 class="cover-title fade-in">PORT<br>FOLIO</h1>
-    <p class="cover-tagline fade-in">
-      <strong>作る前に考え、作った後に語れるデザイナー。</strong><br>
-      課題のヒアリングから訴求設計・制作・改善提案まで、
-      デザインの前後を含めて伴走します。
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-name fade-in">TANAKA JUNDAI — WEB DESIGNER</p>
+    <h1 class="hero-copy fade-in">つくって、<br><em>終わりにしない。</em></h1>
+    <p class="hero-sub fade-in">
+      課題の発見から、訴求の設計、制作、そして掲載後の改善提案まで。
+      デザインの前後を含めて伴走することを、仕事の範囲だと考えています。
     </p>
-    <a class="cover-cta fade-in" href="works.html">作品を見る</a>
-    <nav class="cover-nav fade-in" aria-label="ページ一覧">
-      <a href="banner.html">Web Banner</a>
-      <a href="website.html">Web Site</a>
-      <a href="movie.html">Movie</a>
-      <a href="document.html">Document</a>
-      <a href="profile.html">Profile</a>
-    </nav>
+    <a class="scroll-cue fade-in" href="#works">Scroll</a>
   </div>
-</div>
+</section>
+
+<!-- ═══ WORKS ═══ -->
+<section class="sec-lg" id="works" aria-labelledby="works-title">
+  <div class="wrap">
+    <h2 class="title-xl fade-in" id="works-title">Works</h2>
+    <p class="title-xl-ja fade-in">制作実績</p>
+
+    <div class="work-list">
+      <a class="work-entry fade-in" href="banner.html">
+        <!-- TODO: サムネイル画像に差し替え -->
+        <div class="work-entry-thumb ph">サムネイル【ダミー】</div>
+        <p class="work-entry-title">求人広告バナー制作</p>
+        <p class="work-tags"><span>情報設計</span><span>タイポグラフィ</span><span>Photoshop</span></p>
+      </a>
+
+      <a class="work-entry fade-in" href="website.html">
+        <div class="work-entry-thumb ph">サムネイル【差し替え】</div>
+        <p class="work-entry-title">リラクゼーションサロン 公式サイト構築</p>
+        <p class="work-tags"><span>情報設計</span><span>Webデザイン</span><span>WordPress</span><span>AI活用</span></p>
+      </a>
+
+      <a class="work-entry fade-in" href="movie.html">
+        <div class="work-entry-thumb ph">サムネイル【ダミー】</div>
+        <p class="work-entry-title">MV・映像制作</p>
+        <p class="work-tags"><span>映像編集</span><span>カラーグレーディング</span><span>撮影</span></p>
+      </a>
+
+      <a class="work-entry fade-in" href="document.html">
+        <div class="work-entry-thumb ph">サムネイル【ダミー】</div>
+        <p class="work-entry-title">生成AI活用 提案資料</p>
+        <p class="work-tags"><span>資料設計</span><span>業務改善提案</span><span>プロンプト設計</span></p>
+      </a>
+    </div>
+
+    <a class="more-link fade-in" href="works.html">View All Works</a>
+  </div>
+</section>
+
+<!-- ═══ できること ═══ -->
+<section class="sec-lg" id="service" aria-labelledby="service-title">
+  <div class="wrap">
+    <h2 class="title-xl fade-in" id="service-title">Service</h2>
+    <p class="title-xl-ja fade-in">できること</p>
+
+    <div class="service-list">
+      <div class="service-item fade-in">
+        <p class="service-name">訴求設計と制作</p>
+        <p class="service-text">
+          ターゲットにとってのメリットから逆算して訴求軸を決め、情報に優先順位をつけて設計します。
+          可読性を最優先にした文字設計で、限られたスペースでも伝わる形に仕上げます。
+        </p>
+      </div>
+      <div class="service-item fade-in">
+        <p class="service-name">掲載と運用改善</p>
+        <p class="service-text">
+          制作だけでなく、媒体への掲載設定や表示速度を意識したデータ最適化まで対応します。
+          公開後も反応を見ながら改善を重ね、成果につながる状態まで運びます。
+        </p>
+      </div>
+      <div class="service-item fade-in">
+        <p class="service-name">仕組み化とAI活用</p>
+        <p class="service-text">
+          制作の型やプロンプトを資産として整備し、品質を保ちながら速く回る体制をつくります。
+          生成AIは道具として使い分け、対応できる領域そのものを広げていきます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="sec-lg" id="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <h2 class="title-xl fade-in" id="about-title">About</h2>
+    <p class="title-xl-ja fade-in">私について</p>
+
+    <p class="hero-sub fade-in" style="margin-bottom:0">
+      製造業の品質管理職からデザインの道へ。
+      工程を管理し、品質を安定させる考え方を土台に、
+      現在は広告代理店で求人広告バナーの制作を担当しています。
+      つくることと、伝えること、改善することを行き来しながら仕事をしています。
+    </p>
+
+    <a class="more-link fade-in" href="profile.html">View Profile</a>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="sec-lg" id="contact" aria-labelledby="contact-title">
+  <div class="wrap contact-block">
+    <h2 class="title-xl fade-in" id="contact-title">Contact</h2>
+    <p class="title-xl-ja fade-in">お問い合わせ</p>
+    <p class="contact-copy fade-in">
+      ご相談・ご連絡は<br>お気軽にお寄せください。
+    </p>
+    <!-- TODO: 連絡先を実際のものに差し替えてください -->
+    <a class="cover-cta fade-in" href="mailto:dummy@example.com">dummy@example.com【ダミー】</a>
+  </div>
+</section>
+
 </main>
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-contact-label">Contact</p>
-    <!-- TODO: 連絡先を実際のものに差し替えてください -->
-    <p class="footer-contact">お問い合わせ:<a href="mailto:dummy@example.com">dummy@example.com</a>【ダミー】</p>
     <div class="footer-links">
       <a href="works.html">Works</a>
       <a href="banner.html">Web Banner</a>
-      <a href="website.html">Web Site</a>
       <a href="website.html">Web Site</a>
       <a href="movie.html">Movie</a>
       <a href="document.html">Document</a>
@@ -81,6 +169,9 @@
   </div>
 </footer>
 
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
 <script src="script.js"></script>
 </body>
 </html>
