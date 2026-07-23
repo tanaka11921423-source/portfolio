@@ -19,12 +19,9 @@
     <a class="nav-logo" href="index.html">PORTFOLIO</a>
     <span class="nav-here" aria-hidden="true">Profile</span>
     <ul class="nav-links">
-      <li><a href="works.html">Works</a></li>
-      <li><a href="banner.html">Web Banner</a></li>
-      <li><a href="website.html">Web Site</a></li>
-      <li><a href="movie.html">Movie</a></li>
-      <li><a href="document.html">Document</a></li>
+      <li><a href="index.html#works">Works</a></li>
       <li><a href="profile.html" aria-current="page">Profile</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -32,12 +29,9 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="モバイルメニュー">
-  <a href="works.html">Works</a>
-  <a href="banner.html">Web Banner</a>
-  <a href="website.html">Web Site</a>
-  <a href="movie.html">Movie</a>
-  <a href="document.html">Document</a>
+  <a href="index.html#works">Works</a>
   <a href="profile.html" aria-current="page">Profile</a>
+  <a href="index.html#contact">Contact</a>
 </div>
 
 <main>
@@ -49,9 +43,9 @@
         <h1 class="profile-name fade-in" id="profile-name">Tanaka Jundai</h1>
         <p class="profile-name-ja fade-in">田中 純大|1999年生まれ、福島県出身</p>
         <p class="profile-intro fade-in">
-          幼少期よりアニメ・ゲーム・工作に熱中し、理想の世界を形にすることへの没頭がデザインの原点。
-          製造業での品質管理を経てクリエイティブ分野へ転身し、
-          現在は広告代理店にて、<strong>短納期が求められる求人広告バナーの制作</strong>を担当するWEBデザイナーです。
+          <span class="nb">幼少期よりアニメ・ゲーム・工作に熱中し、</span><span class="nb">理想の世界を形にすることへの没頭が</span><span class="nb">デザインの原点。</span>
+          <span class="nb">製造業での品質管理を経て</span><span class="nb">クリエイティブ分野へ転身し、</span>
+          <span class="nb">現在は広告代理店にて、</span><strong class="nb">短納期が求められる求人広告バナーの制作</strong><span class="nb">を担当するWEBデザイナーです。</span>
         </p>
         <div class="chips fade-in">
           <span class="chip hi">Photoshop</span>
@@ -76,10 +70,10 @@
     <div class="note-box fade-in">
       <p class="note-box-label">自己PR</p>
       <p class="note-box-text">
-        デザイナーとしての制作経験と、前職で培った<strong>プロセス管理・品質安定化の思考</strong>を土台に、
-        <strong>意図を言葉で説明でき、提案から改善まで伴走できるデザイナー</strong>を目指しています。
-        「作って終わり」ではなく、データと対話しながら継続的に改善し、
-        ビジネス目標に直結するクリエイティブを生み出すことが目標です。
+        <span class="nb">デザイナーとしての制作経験と、</span><span class="nb">前職で培った</span><strong class="nb">プロセス管理・品質安定化の思考</strong><span class="nb">を土台に、</span>
+        <strong class="nb">意図を言葉で説明でき、</strong><strong class="nb">提案から改善まで伴走できるデザイナー</strong><span class="nb">を目指しています。</span>
+        <span class="nb">「作って終わり」ではなく、</span><span class="nb">データと対話しながら継続的に改善し、</span>
+        <span class="nb">ビジネス目標に直結するクリエイティブを</span><span class="nb">生み出すことが目標です。</span>
       </p>
     </div>
 
@@ -176,8 +170,8 @@
     <h2 class="sec-title fade-in" id="vision-title">目指すデザイナー像</h2>
 
     <blockquote class="philosophy-quote fade-in">
-      意図を語り、提案できる。<br>
-      ビジネスに効くデザイナーへ
+      <span class="nb">意図を語り、提案できる。</span><br>
+      <span class="nb">ビジネスに効くデザイナーへ</span>
     </blockquote>
 
     <div class="philosophy-body fade-in">
@@ -201,9 +195,9 @@
     <span class="page-nav-label">← Prev</span>
     <span class="page-nav-title">Document</span>
   </a>
-  <a href="works.html" class="next">
+  <a href="index.html" class="next">
     <span class="page-nav-label">Next →</span>
-    <span class="page-nav-title">Works</span>
+    <span class="page-nav-title">Top</span>
   </a>
 </nav>
 
@@ -212,7 +206,7 @@
     <p class="footer-contact-label">Contact</p>
     <p class="footer-contact">お問い合わせ:<a href="mailto:dummy@example.com">dummy@example.com</a>【ダミー】</p>
     <div class="footer-links">
-      <a href="works.html">Works</a>
+      <a href="index.html">Top</a>
       <a href="banner.html">Web Banner</a>
       <a href="website.html">Web Site</a>
       <a href="movie.html">Movie</a>
@@ -222,6 +216,29 @@
     <p class="footer-copy">© 2026 Tanaka Jundai</p>
   </div>
 </footer>
+
+<nav class="dock" aria-label="作品ページへのショートカット">
+  <a class="dock-item" href="banner.html" style="--thumb:url(banner1.jpg)" title="Banner">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M6.5 10h11M6.5 14h6"/></svg>
+    <span class="dock-label">Banner</span>
+  </a>
+  <a class="dock-item" href="website.html" style="--thumb:url(website-top.png)" title="Site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 9h19M6 6.5h.01M8.5 6.5h.01"/></svg>
+    <span class="dock-label">Site</span>
+  </a>
+  <a class="dock-item" href="movie.html" style="--thumb:url(concept1.png)" title="Movie">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg>
+    <span class="dock-label">Movie</span>
+  </a>
+  <a class="dock-item" href="document.html" style="--thumb:url(document-1.png)" title="Document">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8l4 4v15H6z"/><path d="M14 2.5v4h4M9 12h6M9 16h6"/></svg>
+    <span class="dock-label">Document</span>
+  </a>
+  <a class="dock-item" href="profile.html" aria-current="page" style="--thumb:url(hero.jpg)" title="Profile">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>
+    <span class="dock-label">Profile</span>
+  </a>
+</nav>
 
 <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
   <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>

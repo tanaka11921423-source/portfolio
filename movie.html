@@ -19,12 +19,9 @@
     <a class="nav-logo" href="index.html">PORTFOLIO</a>
     <span class="nav-here" aria-hidden="true">Movie</span>
     <ul class="nav-links">
-      <li><a href="works.html">Works</a></li>
-      <li><a href="banner.html">Web Banner</a></li>
-      <li><a href="website.html">Web Site</a></li>
-      <li><a href="movie.html" aria-current="page">Movie</a></li>
-      <li><a href="document.html">Document</a></li>
+      <li><a href="index.html#works" class="current">Works</a></li>
       <li><a href="profile.html">Profile</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -32,13 +29,16 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="モバイルメニュー">
-  <a href="works.html">Works</a>
-  <a href="banner.html">Web Banner</a>
-  <a href="website.html">Web Site</a>
-  <a href="movie.html" aria-current="page">Movie</a>
-  <a href="document.html">Document</a>
+  <a href="index.html#works" aria-current="page">Works</a>
   <a href="profile.html">Profile</a>
+  <a href="index.html#contact">Contact</a>
 </div>
+
+<nav class="breadcrumb" aria-label="現在地">
+  <a href="index.html#works">Works</a>
+  <span class="sep" aria-hidden="true">／</span>
+  <span aria-current="page">MV・映像制作</span>
+</nav>
 
 <main>
 <section class="sec-lg" id="works" aria-labelledby="works-title">
@@ -116,7 +116,7 @@
     <p class="footer-contact-label">Contact</p>
     <p class="footer-contact">お問い合わせ:<a href="mailto:dummy@example.com">dummy@example.com</a>【ダミー】</p>
     <div class="footer-links">
-      <a href="works.html">Works</a>
+      <a href="index.html">Top</a>
       <a href="banner.html">Web Banner</a>
       <a href="website.html">Web Site</a>
       <a href="movie.html">Movie</a>
@@ -126,6 +126,29 @@
     <p class="footer-copy">© 2026 Tanaka Jundai</p>
   </div>
 </footer>
+
+<nav class="dock" aria-label="作品ページへのショートカット">
+  <a class="dock-item" href="banner.html" style="--thumb:url(banner1.jpg)" title="Banner">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M6.5 10h11M6.5 14h6"/></svg>
+    <span class="dock-label">Banner</span>
+  </a>
+  <a class="dock-item" href="website.html" style="--thumb:url(website-top.png)" title="Site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 9h19M6 6.5h.01M8.5 6.5h.01"/></svg>
+    <span class="dock-label">Site</span>
+  </a>
+  <a class="dock-item" href="movie.html" aria-current="page" style="--thumb:url(concept1.png)" title="Movie">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg>
+    <span class="dock-label">Movie</span>
+  </a>
+  <a class="dock-item" href="document.html" style="--thumb:url(document-1.png)" title="Document">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8l4 4v15H6z"/><path d="M14 2.5v4h4M9 12h6M9 16h6"/></svg>
+    <span class="dock-label">Document</span>
+  </a>
+  <a class="dock-item" href="profile.html" style="--thumb:url(hero.jpg)" title="Profile">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>
+    <span class="dock-label">Profile</span>
+  </a>
+</nav>
 
 <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
   <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>

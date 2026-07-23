@@ -500,3 +500,177 @@ a:focus-visible, button:focus-visible {
   font-size: clamp(1.3rem, 4vw, 2rem);
   font-weight: 700; line-height: 1.7; margin-bottom: 2rem;
 }
+
+/* ============================================================
+   日本語の改行制御
+   ─ 文節単位で折り返し、禁則処理を守る
+   ============================================================ */
+
+body, p, li, h1, h2, h3, h4, blockquote, figcaption, span, a, td, th {
+  /* 文節(意味のまとまり)単位で改行する ※対応ブラウザで有効 */
+  word-break: auto-phrase;
+  /* 禁則処理を厳格に(小書き文字・長音符などを行頭に置かない) */
+  line-break: strict;
+  /* 単語の途中で切らない */
+  overflow-wrap: normal;
+  word-wrap: normal;
+}
+
+/* 段落は行末の孤立語(1文字だけ次行に落ちる)を避ける */
+p, li, figcaption, .note-box-text, .service-text, .hero-sub, .work-item-desc {
+  text-wrap: pretty;
+}
+
+/* 見出し・短いコピーは行の長さを均等に分ける */
+h1, h2, h3, .hero-copy, .contact-copy, .philosophy-quote,
+.title-xl, .work-entry-title, .sec-title, .service-name {
+  text-wrap: balance;
+}
+
+/* 意味のまとまりで改行させたい箇所に使う(全ブラウザ対応) */
+.nb { display: inline-block; }
+
+/* ============================================================
+   現在地の明示(パンくず + ナビ強調)
+   ============================================================ */
+
+/* ── パンくず ── */
+.breadcrumb {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+  max-width: var(--max); margin: 0 auto;
+  padding: 1.6rem 1.5rem 0;
+  font-size: 0.8rem; letter-spacing: 0.04em;
+}
+.breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb .sep { color: var(--border); }
+.breadcrumb [aria-current="page"] { color: var(--accent); font-weight: 500; }
+
+/* ── 現在ページ見出し(ページ最上部) ── */
+.page-head {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0.8rem 1.5rem 0;
+}
+.page-head-en {
+  font-family: var(--display);
+  font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── ナビの現在地をより明確に ── */
+.nav-links a[aria-current="page"],
+.nav-links a.current {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  font-weight: 500;
+}
+.nav-links a.current::before {
+  content: '●';
+  font-size: 0.5em; vertical-align: middle;
+  margin-right: 0.4em; color: var(--accent);
+}
+.mobile-menu a[aria-current="page"],
+.mobile-menu a.current {
+  color: var(--accent); font-weight: 500;
+  background: var(--accent-lt);
+  border-left: 3px solid var(--accent);
+}
+
+/* ============================================================
+   アイコンドック(作品サムネイルを透かし表示)
+   ============================================================ */
+
+.dock {
+  position: fixed; z-index: 95;
+  display: flex; gap: 0.5rem;
+  /* モバイル:画面下部に横並び */
+  left: 0; right: 0; bottom: 0;
+  padding: 0.55rem 0.6rem calc(0.55rem + env(safe-area-inset-bottom));
+  background: rgba(247,246,242,0.92);
+  backdrop-filter: blur(10px);
+  border-top: var(--line);
+}
+
+.dock-item {
+  position: relative; overflow: hidden;
+  flex: 1 1 0; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.22rem;
+  height: 54px; border-radius: var(--radius);
+  background: var(--bg3); border: var(--line);
+  text-decoration: none; color: var(--text-sub);
+  transition: color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+/* 作品サムネイルの透かし */
+.dock-item::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: var(--thumb);
+  background-size: cover; background-position: center;
+  opacity: 0.16; transition: opacity 0.3s;
+}
+.dock-item:hover::before,
+.dock-item:focus-visible::before { opacity: 0.42; }
+
+.dock-item svg,
+.dock-item .dock-label { position: relative; z-index: 1; }
+.dock-item svg {
+  width: 19px; height: 19px;
+  fill: none; stroke: currentColor; stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.dock-label {
+  font-size: 0.6rem; letter-spacing: 0.05em; line-height: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.dock-item:hover,
+.dock-item:focus-visible {
+  color: var(--accent); border-color: var(--accent); transform: translateY(-2px);
+}
+/* 現在表示中のページ */
+.dock-item[aria-current="page"] {
+  color: var(--accent); border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.dock-item[aria-current="page"]::before { opacity: 0.34; }
+
+/* モバイルはドック分の余白を確保 */
+body { padding-bottom: 74px; }
+.back-to-top { bottom: 84px; }
+
+/* ── PC:右端に縦並び ── */
+@media (min-width: 900px) {
+  body { padding-bottom: 0; }
+  .back-to-top { bottom: 1.2rem; }
+  .dock {
+    left: auto; right: 1rem; bottom: auto; top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column; gap: 0.55rem;
+    padding: 0.6rem; border-top: none;
+    border: var(--line); border-radius: 100px;
+    background: rgba(247,246,242,0.9);
+  }
+  .dock-item {
+    flex: none; width: 48px; height: 48px;
+    border-radius: 50%; gap: 0;
+  }
+  .dock-item svg { width: 20px; height: 20px; }
+  /* ラベルは hover 時に左側へ吹き出し表示 */
+  .dock-label {
+    position: absolute; right: calc(100% + 0.6rem);
+    background: var(--text); color: var(--bg);
+    font-size: 0.72rem; letter-spacing: 0.06em;
+    padding: 0.32rem 0.7rem; border-radius: 100px;
+    opacity: 0; pointer-events: none;
+    transform: translateX(6px); transition: opacity 0.2s, transform 0.2s;
+  }
+  .dock-item:hover .dock-label,
+  .dock-item:focus-visible .dock-label { opacity: 1; transform: translateX(0); }
+  .dock-item:hover { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock-item, .dock-item::before, .dock-label { transition: none; }
+}
