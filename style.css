@@ -481,7 +481,7 @@ a:focus-visible, button:focus-visible {
   display: grid;
   grid-template-columns: 1fr;      /* モバイル:見出しの下に本文 */
   gap: 0.5rem;
-  border-top: 2px solid var(--text);
+  border-top: var(--line);
   padding: 1.4rem 0 2rem;
 }
 .service-item:last-child { padding-bottom: 0; }
@@ -703,16 +703,17 @@ body { padding-bottom: 74px; }
 }
 
 .work-tiles {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: clamp(130px, 30vw, 220px);
-  grid-auto-flow: dense;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;      /* 端数の行は中央に寄せて穴を作らない */
   gap: 0;                       /* パネル同士を密着させる */
 }
 
 .tile {
   position: relative;
   display: block;
+  width: 50%;                   /* モバイル:2列 */
+  aspect-ratio: 4 / 3;          /* 全パネル同一サイズ */
   overflow: hidden;
   background: var(--bg3);
   text-decoration: none;
@@ -742,15 +743,9 @@ body { padding-bottom: 74px; }
 .tile:hover .tile-name,
 .tile:focus-visible .tile-name { opacity: 1; transform: translateY(0); }
 
-/* ── PC:3列のモザイク(大小を混ぜて隙間なく詰める) ── */
-@media (min-width: 800px) {
-  .work-tiles {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: clamp(180px, 18vw, 280px);
-    grid-auto-flow: dense;        /* 空きマスを自動で埋める */
-  }
-  /* 4枚に1枚を横2マス分の大パネルにする */
-  .tile:nth-child(4n+1) { grid-column: span 2; }
+/* ── PC:4列。全パネル同一サイズで隙間なく並べる ── */
+@media (min-width: 900px) {
+  .tile { width: 25%; }
 }
 
 /* タッチ端末は常時表示(ホバーがないため) */
