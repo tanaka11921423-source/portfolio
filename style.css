@@ -757,3 +757,49 @@ body { padding-bottom: 74px; }
   .tile img, .tile-name { transition: none; }
   .tile:hover img { transform: none; }
 }
+
+/* ============================================================
+   LP:縦長ページをスクロール枠で見せる
+   ============================================================ */
+
+.lp-item { margin-bottom: 4.5rem; }
+.lp-item:last-child { margin-bottom: 0; }
+
+.lp-layout { display: grid; gap: 1.8rem; align-items: start; }
+@media (min-width: 800px) {
+  .lp-layout { grid-template-columns: 300px 1fr; gap: 2.5rem; }
+}
+
+/* スクロールで全体を見せる枠(実際の閲覧体験に近い形) */
+.lp-frame {
+  position: relative;
+  height: 460px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--bg3);
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 800px) { .lp-frame { height: 560px; } }
+.lp-frame img { width: 100%; display: block; }
+
+/* スクロールできることを示すヒント */
+.lp-hint {
+  font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--text-muted); margin-top: 0.5rem;
+}
+.lp-hint::before { content: '↕ '; color: var(--accent); }
+
+.lp-meta-name {
+  font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem;
+}
+.lp-meta-cat {
+  font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); font-weight: 500; margin-bottom: 0.8rem;
+}
+.lp-meta-text {
+  font-size: 0.88rem; color: var(--text-sub); line-height: 1.9;
+  margin-bottom: 1rem;
+}
+.lp-meta-text strong { color: var(--text); font-weight: 500; }
